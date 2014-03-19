@@ -1,0 +1,267 @@
+/* SCSS */
+$font-stack: Helvetica, sans-serif;
+
+$color1: #F2940A;
+$color2: #47a447;
+$color3: #0A82C7;
+$color4: #db0a40;
+$color5: #2B2B2B;
+$color6: #666;
+$color7: #aaa;
+$color8: #e5e5e5;
+$color9: white;
+$color10: #fa3300;
+
+
+
+$width: 830px;
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin box-shadow($value) {
+  -moz-box-shadow: $value;
+  -webkit-box-shadow: $value;
+  box-shadow: $value;
+}
+
+body {
+  font: 14px $font-stack;
+  color: $color6;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+  color: $color3;
+  font-size: 26px;
+}
+
+.header a {
+  color: #666666; }
+
+.header li a:hover {
+  color: $color6;
+}
+
+.header h4 {
+  margin: 0;
+  font-size: 14px;
+  color: $color6;
+  font-weight: normal;
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: color1;
+  border-top: 1px solid $color6;
+}
+
+/* Customize container */
+@media (min-width: $width +38) {
+  .container {
+    max-width: $width;
+    .jumbotron {
+      padding: 24px 34px;
+      text-align: center;
+      border-bottom: 1px solid $color8;
+      @include box-shadow(3px 3px 10px 1px $color7);
+    }
+    .btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 21px;
+    }
+  }
+}
+
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Supporting marketing content */
+.result {
+  margin: 40px 0;
+}
+
+li.menuitem {
+  a {
+    cursor: pointer;
+    ul > li > a {
+      cursor: pointer;
+    }
+  }
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: $width + 38) {
+  /* Remove the padding we set earlier */
+  .header,
+  .result,
+  .footer {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
+
+#query-container {
+  border: 1px solid $color7;
+  @include border-radius(10px);
+  height: 250px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.dropdown-menu>li>a, .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+  color: $color6
+}
+
+.alert h2 {
+  margin: 0 0 10px 0;
+  font-size: 20px;
+}
+
+.uri {
+  color: $color1;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.bnode {
+  color: $color2;
+}
+
+.browser-header {
+  color: $color5;
+}
+
+.download-button {
+  position: absolute;
+  margin-top: 5px !important;
+  margin-left: $width - 100;
+}
+
+.loader {
+  text-align: center;
+}
+
+.external-link {
+  margin-left: 2px;
+  color: $color6;
+  font-size: 12px;
+}
+
+.video {
+  width: 900;
+}
+
+.video-item {
+  width: ($width - 20)/3;
+  height: 200px;
+  padding: 10px;
+  float: left;
+  position: relative;
+}
+
+.video-item video {
+  width: 100%;
+  cursor: pointer;
+}
+
+.video-overlay {
+  padding: 3px;
+  position: relative;
+  background-color: $color5;
+  color:white;
+}
+
+.video-single-back {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  opacity: 0.9;
+}
+
+.video-single {
+  position: fixed;
+  width: 600px;
+  top: 100px;
+  left: 50%;
+  margin-left: -300px;
+  z-index: 101;
+  border: 1px solid $color8;
+  @include box-shadow(0 0 15px 1px $color8);
+  @include border-radius(5px);
+}
+
+.video-single video {
+  width: 100%;
+}
+
+.video-closer {
+  color: $color9;
+  position: fixed;
+  top: 70px;
+  left: 50%;
+  margin-left: 310px;
+  width: 20px;
+  height: 20px;
+  z-index: 102;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.region-overlay {
+  position: fixed;
+  z-index: 102;
+  left: 50%;
+  border: 3px double #A9FF00;
+  @include box-shadow(0 0 15px 1px $color8);
+}
+
+.hint-overlay {
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+
+.hint {
+  position: absolute;
+  z-index: 999;
+}
+
+@import 'code';

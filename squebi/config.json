@@ -1,0 +1,29 @@
+{
+    "serviceURL": {
+        "select": "http://example.org/sparql/select",
+        "update": "http://example.org/sparql/update"
+    },
+    "samples": [
+        {"name":"Select first 10 triples", "value":"SELECT * WHERE {\n  ?subject ?property ?object\n} LIMIT 10","type":"browse"},
+        {"name":"List types", "value":"SELECT DISTINCT ?type WHERE {\n  [] a ?type\n} ORDER BY ?type","type":"browse"},
+        {"name":"List properties", "value":"SELECT DISTINCT ?property WHERE {\n  [] ?property []\n} ORDER BY ?property","type":"browse"},
+        {"name":"List classes and count their usage as pie chart", "value":"SELECT ?class (COUNT (?s) AS ?count) WHERE {\n  ?s a ?class\n}\nGROUP BY ?class\nORDER BY DESC(?count)","type":"piechart"}
+    ],
+    "hints": [
+        {"container":"samples","content":"<img width='300px' src='squebi/img/hint1.png'>","position":2,"dimension":{"width":100,"height":100},"css":"margin-top:-5px;margin-left:-10px"},
+        {"container":"query-container","content":"<img width='300px' src='squebi/img/hint3.png'>","dimension":{"width":100,"height":100},"css":"margin-top:120px;margin-left:-210px"},
+        {"container":"writers","content":"<img width='370px' src='squebi/img/hint2.png'>","dimension":{"width":100,"height":100},"css":"margin-top:-30px;margin-left:-400px","position":2}
+    ],
+    "namespaces": {
+        "http://www.w3.org/2000/01/rdf-schema#":"rdfs",
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#":"rdf",
+        "http://www.w3.org/2004/02/skos/core#":"skos",
+        "http://xmlns.com/foaf/0.1/":"foaf",
+        "http://purl.org/dc/terms/":"dct",
+        "http://www.w3.org/ns/ma-ont#":"ma",
+        "http://purl.org/dc/elements/1.1/":"dc"
+    },
+    "basic": {
+        "updateAllowed": true
+    }
+}

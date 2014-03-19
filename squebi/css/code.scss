@@ -1,0 +1,50 @@
+/* CODE MIRROR */
+.CodeMirror {
+  height: 250px;
+  margin: 0 auto;
+  text-align: left;
+  line-height: 18px;
+}
+
+.cm-s-mdn-like.CodeMirror {
+  color: $color6;
+}
+
+.cm-s-sparql-mm .cm-keyword {
+  color: $color1;
+}
+
+.cm-s-sparql-mm .CodeMirror-gutters {
+  border-left: 0;
+}
+
+.cm-s-mdn-like .CodeMirror-selected {
+  background: $color3 !important;
+  opacity: 0.15;
+}
+
+.cm-s-sparql-mm .cm-atom {
+  color: $color6;
+}
+
+.cm-s-mdn-like .cm-variable {
+  color: $color10;
+}
+
+.cm-s-mdn-like span.cm-variable-2, .cm-s-mdn-like span.cm-tag {
+  color: $color3;
+}
+
+.CodeMirror-wrap .CodeMirror-scroll {
+  overflow: hidden;
+}
+
+.cm-s-mdn-like .CodeMirror-linenumber {
+  margin-left: -5px;
+}
+
+.CodeMirror-hint {
+  background: $color1;
+  max-width: 1000px;
+  padding: 2px 10px;
+}
