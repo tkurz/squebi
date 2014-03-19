@@ -1,6 +1,6 @@
 {
   "name": "Squebi",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "dependencies": {
   	"requirejs":"2.1.11",
     "requirejs-plugins": "1.0.2",
