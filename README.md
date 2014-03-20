@@ -11,13 +11,14 @@ Squeby uses [bower](http://bower.io/) for dependency management. To get all depe
 Configuration
 -------------
 
-As minimal configuration set your SPARQL endpoints by creating a file named `config.json` in your Squebi root like this:
+For configuration set your SPARQL endpoints (and additional parameters) by script and include it before the requirejs file like this:
 
-```json
-{
-    "serviceURL": {
-        "select": "http://my.server.org/sparql/select",
-        "update": "http://my.server.org/sparql/update"
-    }
-}
+```javascript
+    SQUEBI = {
+        selectService : "https://api.redlink.io/1.0-BETA/data/example/sparql/select",
+        updateService : "https://api.redlink.io/1.0-BETA/data/example/sparql/update",
+        queryParams : {
+            key : "93jWHp9iQcN8ESHBvzdHqTgxuqEHIarRf06708fd"
+        }
+    };
 ```
