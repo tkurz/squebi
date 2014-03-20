@@ -2,7 +2,7 @@
  * the app
  * @type {module|*}
  */
-var squeby = angular.module( 'Squeby',[
+var squebi = angular.module( 'Squebi',[
     'ui.codemirror'
     ,'ui.bootstrap'
 ]);
@@ -10,7 +10,7 @@ var squeby = angular.module( 'Squeby',[
 /**
  * To register
  */
-squeby.service("$extension", function ($rootScope) {
+squebi.service("$extension", function ($rootScope) {
 
     var extension = {
         resultWriter : []
@@ -25,7 +25,7 @@ squeby.service("$extension", function ($rootScope) {
         this.onsuccess = onsuccess;
         this.onfailure = function($scope,data){
             $rootScope.alerts.push(data);
-            $scope.template = 'squebi/template/basic.html';
+            $scope.template = SQUEBI.app + '/squebi/template/basic.html';
             if(onfailure) onfailure($scope,data);
         };
     }
@@ -62,12 +62,13 @@ squeby.service("$extension", function ($rootScope) {
 /**
  * a service for sparql endpoints
  */
-squeby.service("$sparql", function ($http, SQUEBY) {
+squebi.service("$sparql", function ($http, SQUEBI) {
     this.query = function(query, options, onsuccess, onfailure) {
         $http({
-            url: SQUEBY.serviceURL.select,
+            url: SQUEBI.selectService,
             method: "POST",
             data: query,
+            params: SQUEBI.queryParams,
             headers: {
                 'Content-Type': 'application/sparql-query',
                 'Accept': options.acceptType
@@ -83,9 +84,10 @@ squeby.service("$sparql", function ($http, SQUEBY) {
 
     this.update = function(query, options, onsuccess, onfailure) {
         $http({
-            url: SQUEBY.serviceURL.update,
+            url: SQUEBI.updateService,
             method: "POST",
             data: query,
+            params: SQUEBI.queryParams,
             headers: {
                 'Content-Type': 'application/sparql-update'
             }
@@ -102,10 +104,10 @@ squeby.service("$sparql", function ($http, SQUEBY) {
 /**
  * A controller to load sample queries from configuration
  */
-squeby.controller( 'SampleCtrl', function( SQUEBY, $rootScope, $sparql, $http, $scope, $sce ) {
+squebi.controller( 'SampleCtrl', function( SQUEBI, $rootScope, $sparql, $http, $scope, $sce ) {
 
     $scope.showHint = false;
-    $scope.hint = SQUEBY.hints && SQUEBY.hints.length > 0;
+    $scope.hint = SQUEBI.hints && SQUEBI.hints.length > 0;
     $scope.hints = [];
 
     function buildHint(hint) {
@@ -133,14 +135,14 @@ squeby.controller( 'SampleCtrl', function( SQUEBY, $rootScope, $sparql, $http, $
         $scope.hints = [];
 
         //prepare hints
-        for(var i in SQUEBY.hints) {
-            $scope.hints.push(buildHint(SQUEBY.hints[i]));
+        for(var i in SQUEBI.hints) {
+            $scope.hints.push(buildHint(SQUEBI.hints[i]));
         }
 
         $scope.showHint = true;
     }
 
-    $scope.samples = SQUEBY.samples;
+    $scope.samples = SQUEBI.samples;
 
     $rootScope.sample = $scope.samples[0].value;
 
@@ -154,7 +156,7 @@ squeby.controller( 'SampleCtrl', function( SQUEBY, $rootScope, $sparql, $http, $
 });
 
 
-squeby.controller( 'FormatCtrl', function( SQUEBY, $extension, $rootScope, $sparql, $http, $scope ) {
+squebi.controller( 'FormatCtrl', function( SQUEBI, $extension, $rootScope, $sparql, $http, $scope ) {
 
     $scope.writers = $extension.listResultWriters();
 
@@ -173,7 +175,7 @@ squeby.controller( 'FormatCtrl', function( SQUEBY, $extension, $rootScope, $spar
 /**
  * A controller that issues the query
  */
-squeby.controller( 'QueryCtrl', function( SQUEBY, $rootScope, $sparql, $http, $scope, $location, $extension ) {
+squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $scope, $location, $extension ) {
 
     $scope.query = $rootScope.sample;
 
@@ -203,8 +205,8 @@ squeby.controller( 'QueryCtrl', function( SQUEBY, $rootScope, $sparql, $http, $s
                     var result;
 
                     //check if it is in static
-                    for(var property in SQUEBY.namespaces) {
-                        if(SQUEBY.namespaces[property] == prefix) {
+                    for(var property in SQUEBI.namespaces) {
+                        if(SQUEBI.namespaces[property] == prefix) {
                             result = property;
                             break;
                         }
@@ -302,7 +304,7 @@ squeby.controller( 'QueryCtrl', function( SQUEBY, $rootScope, $sparql, $http, $s
 
                 $rootScope.showResults = false;
 
-                if(!SQUEBY.basic.updateAllowed) {
+                if(!SQUEBI.updateAllowed) {
                     $rootScope.alerts.push({type: 'info', msg: 'Update queries are not allowed'});
                     break;
                 }
@@ -387,7 +389,7 @@ squeby.controller( 'QueryCtrl', function( SQUEBY, $rootScope, $sparql, $http, $s
 /**
  * A controller to support alert messages
  */
-squeby.controller( 'AlertCtrl', function( SQUEBY, $timeout, $rootScope, $scope ) {
+squebi.controller( 'AlertCtrl', function( SQUEBI, $timeout, $rootScope, $scope ) {
 
     $rootScope.alerts = [];
 
@@ -401,9 +403,9 @@ squeby.controller( 'AlertCtrl', function( SQUEBY, $timeout, $rootScope, $scope )
     };
 });
 
-squeby.controller( 'ResultCtrl', function( SQUEBY, $timeout, $rootScope, $scope ) {
+squebi.controller( 'ResultCtrl', function( SQUEBI, $timeout, $rootScope, $scope ) {
 
-    $scope.template = 'squebi/template/basic.html';
+    $scope.template = SQUEBI.app + '/squebi/template/basic.html';
 
     $rootScope.$on('querySuccess', function(e,data) {
         $rootScope.alerts = [];

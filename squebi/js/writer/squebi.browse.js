@@ -1,7 +1,7 @@
 /**
  * Browsable
  */
-squeby.run( function($extension,SQUEBY) {
+squebi.run( function($extension,SQUEBI) {
 
     var config = {
         showFlags : true
@@ -20,7 +20,7 @@ squeby.run( function($extension,SQUEBY) {
         /*
         var namespaceIndex = Math.max(uri.lastIndexOf("/"),uri.lastIndexOf("#")) +1;
         var namespace = uri.substring(0, namespaceIndex);
-        var ns_name = namespace in SQUEBY.namespaces ? SQUEBY.namespaces[namespace] : "nsp";
+        var ns_name = namespace in SQUEBI.namespaces ? SQUEBI.namespaces[namespace] : "nsp";
         var ns_uri = ns_name + ":" + uri.substring(namespaceIndex);
          */
 
@@ -42,8 +42,8 @@ squeby.run( function($extension,SQUEBY) {
         var namespaceIndex = Math.max(uri.lastIndexOf("/"),uri.lastIndexOf("#")) +1;
         var namespace = uri.substring(0, namespaceIndex);
 
-        if(namespace in SQUEBY.namespaces) {
-            return SQUEBY.namespaces[namespace] + ":" + uri.substring(namespaceIndex);
+        if(namespace in SQUEBI.namespaces) {
+            return SQUEBI.namespaces[namespace] + ":" + uri.substring(namespaceIndex);
         } else {
             return uri;
         }
