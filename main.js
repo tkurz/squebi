@@ -17,11 +17,11 @@ requirejs.config({
         codemirrorSparql : SQUEBI.bower + "/codemirror/mode/sparql/sparql",
         codemirrorUI : SQUEBI.bower + "/angular-ui-codemirror/ui-codemirror",
         codemirrorHint : SQUEBI.bower + "/codemirror/addon/hint/show-hint",
-        _squebi : SQUEBI.app + "/squebi/js/squebi",
-        squebiBrowse : SQUEBI.app + "/squebi/js/writer/squebi.browse",
-        squebiJson : SQUEBI.app + "/squebi/js/writer/squebi.json",
-        squebiXml : SQUEBI.app + "/squebi/js/writer/squebi.xml",
-        squebiPie: SQUEBI.app + "/squebi/js/writer/squebi.pie"
+        _squebi : "squebi/js/squebi",
+        squebiBrowse : "squebi/js/writer/squebi.browse",
+        squebiJson : "squebi/js/writer/squebi.json",
+        squebiXml : "squebi/js/writer/squebi.xml",
+        squebiPie: "squebi/js/writer/squebi.pie"
     },
     shim: {
         'goog': ['async','propertyParser'],
@@ -50,13 +50,13 @@ require([
     "squebiXml",
     'goog!visualization,1,packages:[corechart]',
     "squebiPie",
-    "css!" + SQUEBI.app + "/squebi/css/flags",
+    "css!squebi/css/flags",
     "css!" + SQUEBI.bower + "/bootstrap/dist/css/bootstrap",
     "css!" + SQUEBI.bower + "/codemirror/lib/codemirror",
     "css!" + SQUEBI.bower + "/codemirror/theme/neat",
     "css!" + SQUEBI.bower + "/codemirror/addon/hint/show-hint",
     "css!" + SQUEBI.bower + "/fontawesome/css/font-awesome",
-    "css!" + SQUEBI.app + "/squebi/css/style"
+    "css!squebi/css/style"
 ], function() {
 
     angular.element(document).ready(function($http,$rootScope) {
@@ -88,7 +88,7 @@ require([
         }
 
         jQuery.extend(defaultConfig, SQUEBI);
-        jQuery('body').show();
+        jQuery(SQUEBI.container).show();
         squebi.constant('SQUEBI', defaultConfig);
         angular.bootstrap(SQUEBI.container, ['Squebi']);
 
