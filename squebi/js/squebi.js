@@ -39,8 +39,8 @@ squebi.service("$extension", function ($rootScope) {
     this.listResultWriters = function() {
         //order
         extension.resultWriter = extension.resultWriter.sort(function(a,b) {
-            return a <= b ? -1 : 1;
-        });console.log(extension.resultWriter)
+            return a.position <= b.position ? -1 : 1;
+        });
         return extension.resultWriter;
     }
 
