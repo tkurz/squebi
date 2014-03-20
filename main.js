@@ -1,21 +1,22 @@
 if(window.SQUEBI == undefined) SQUEBI = {};
 
 SQUEBI.app = SQUEBI.app || ".";
+SQUEBI.bower = SQUEBI.bower || "bower_components";
 SQUEBI.container = SQUEBI.container || "body";
 
 requirejs.config({
     paths: {
-        async : "bower_components/requirejs-plugins/src/async",
-        propertyParser : "bower_components/requirejs-plugins/src/propertyParser",
-        goog : "bower_components/requirejs-plugins/src/goog",
-        jquery : "bower_components/jquery/dist/jquery",
-        angular : "bower_components/angular/angular",
-        bootstrap : "bower_components/bootstrap/dist/js/bootstrap",
-        bootstrapUI : "bower_components/angular-bootstrap/ui-bootstrap",
-        codemirror : "bower_components/codemirror/lib/codemirror",
-        codemirrorSparql : "bower_components/codemirror/mode/sparql/sparql",
-        codemirrorUI : "bower_components/angular-ui-codemirror/ui-codemirror",
-        codemirrorHint : "bower_components/codemirror/addon/hint/show-hint",
+        async : SQUEBI.bower + "/requirejs-plugins/src/async",
+        propertyParser : SQUEBI.bower + "/requirejs-plugins/src/propertyParser",
+        goog : SQUEBI.bower + "/requirejs-plugins/src/goog",
+        jquery : SQUEBI.bower + "/jquery/dist/jquery",
+        angular : SQUEBI.bower + "/angular/angular",
+        bootstrap : SQUEBI.bower + "/bootstrap/dist/js/bootstrap",
+        bootstrapUI : SQUEBI.bower + "/angular-bootstrap/ui-bootstrap",
+        codemirror : SQUEBI.bower + "/codemirror/lib/codemirror",
+        codemirrorSparql : SQUEBI.bower + "/codemirror/mode/sparql/sparql",
+        codemirrorUI : SQUEBI.bower + "/angular-ui-codemirror/ui-codemirror",
+        codemirrorHint : SQUEBI.bower + "/codemirror/addon/hint/show-hint",
         _squebi : SQUEBI.app + "/squebi/js/squebi",
         squebiBrowse : SQUEBI.app + "/squebi/js/writer/squebi.browse",
         squebiJson : SQUEBI.app + "/squebi/js/writer/squebi.json",
@@ -37,7 +38,7 @@ requirejs.config({
         'squebiPie' : ['_squebi']
     },map: {
         '*': {
-            'css': 'bower_components/require-css/css'
+            'css': SQUEBI.bower + '/require-css/css'
         }
     }
 });
@@ -50,11 +51,11 @@ require([
     'goog!visualization,1,packages:[corechart]',
     "squebiPie",
     "css!" + SQUEBI.app + "/squebi/css/flags",
-    "css!bower_components/bootstrap/dist/css/bootstrap",
-    "css!bower_components/codemirror/lib/codemirror",
-    "css!bower_components/codemirror/theme/neat",
-    "css!bower_components/codemirror/addon/hint/show-hint",
-    "css!bower_components/fontawesome/css/font-awesome",
+    "css!" + SQUEBI.bower + "/bootstrap/dist/css/bootstrap",
+    "css!" + SQUEBI.bower + "/codemirror/lib/codemirror",
+    "css!" + SQUEBI.bower + "/codemirror/theme/neat",
+    "css!" + SQUEBI.bower + "/codemirror/addon/hint/show-hint",
+    "css!" + SQUEBI.bower + "/fontawesome/css/font-awesome",
     "css!" + SQUEBI.app + "/squebi/css/style"
 ], function() {
 
