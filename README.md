@@ -18,7 +18,7 @@ For configuration set your SPARQL endpoints (and additional parameters) by scrip
         selectService : "https://api.redlink.io/1.0-BETA/data/example/sparql/select",
         updateService : "https://api.redlink.io/1.0-BETA/data/example/sparql/update",
         queryParams : {
-            key : "93jWHp9iQcN8ESHBvzdHqTgxuqEHIarRf06708fd"
+            key : "mykeyasadditionalqueryparameter"
         }
     };
 ```
