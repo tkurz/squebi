@@ -9,7 +9,7 @@
                 <a class="external-link" href="{{binding[name].value}}" target="_blank"><i class="fa fa-external-link"></i></a>
             </div>
             <span class="literal" ng-show="binding[name].type == 'literal'">{{binding[name].value}}
-                <img src="squebi/img/transparent.gif" ng-show="binding[name]['xml:lang'] && showFlags" class="flag flag-{{binding[name]['xml:lang']}}">
+                <img ng-src="{{transparent}}" ng-show="binding[name]['xml:lang'] && showFlags" class="flag flag-{{binding[name]['xml:lang']}}">
                 <span class="lang" ng-show="binding[name]['xml:lang'] && !showFlags">@{{binding[name]['xml:lang']}}</span>
             </span>
             <span class="bnode" ng-show="binding[name].type == 'bnode'">_:{{binding[name].value}}</span>

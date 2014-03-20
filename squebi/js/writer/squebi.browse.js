@@ -70,6 +70,8 @@ squebi.run( function($extension,SQUEBI) {
 
             $scope.getDisplayName = getDisplayName;
 
+            $scope.transparent = SQUEBI.app + '/squebi/img/transparent.gif';
+
             $scope.headers = data.data.head.vars;
             $scope.bindings = data.data.results.bindings;
 
