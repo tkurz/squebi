@@ -11,7 +11,36 @@ Squeby uses [bower](http://bower.io/) for dependency management. To get all depe
 Configuration
 -------------
 
-For configuration set your SPARQL endpoints (and additional parameters) by script and include it before the requirejs file like this:
+For configuration set your SPARQL endpoints (and additional parameters) by script and include it before the requirejs.
+
+### selectService : String (required)
+The URI of the SPARQL select webservice (used via POST).
+
+### updateService : String (required)
+The URI of the SPARQL update webservice (used via POST).
+
+### queryParams : Object
+Additional query parameters as property:'value' pairs.
+
+### updateAllowed : Boolean
+If UI allows SPARQL update queries
+
+**default: true**
+
+### namespaces : Object
+Namespace prefixes as path:'prefix' pairs. Als prefixes that are not defined here will be looked up on prefix.cc.
+
+### app : String
+The uri of the squebi app
+
+**default: '.'**
+
+### bower : String
+The uri of the bower dependencies
+
+**default: 'bower_components'**
+
+## Sample Configuration
 
 ```javascript
     SQUEBI = {
