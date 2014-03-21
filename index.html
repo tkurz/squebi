@@ -11,10 +11,15 @@
             };
         </script>
         <script data-main="main" src="bower_components/requirejs/require.js"></script>
+        <style>
+            #redlink:hover {
+                text-decoration: none;
+            }
+        </style>
     </head>
     <body style="display: none">
 
-        <div class="container">
+        <div class="container" >
             <div ng-controller="SampleCtrl" class="header">
                 <div ng-show="showHint">
                     <div ng-click="showHint = false" class="hint-overlay"></div>
@@ -39,12 +44,15 @@
                 <h4 class="subtitle">The SPARQL Interface</h4>
             </div>
 
-            <div ng-controller="QueryCtrl" class="jumbotron">
+            <div style="position: relative" ng-controller="QueryCtrl" class="jumbotron">
                 <div id="query-container">
                     <textarea id="input" ng-model="query" ui-codemirror="editorOptions"></textarea>
                 </div>
                 <a class="btn btn-lg btn-success btn-query" ng-click="triggerQuery()">
                     <i class="fa fa-play-circle"></i> Run
+                </a>
+                <a id="redlink" href="http://redlink.co" style="position: absolute;right:40px;bottom:98px">
+                    <div style="color:#888;padding-right: 5px;display: inline; font-size: 16px">powered by</div><img style="width: 25px;margin-top:-5px;" src="R-logo.png">
                 </a>
             </div>
 
