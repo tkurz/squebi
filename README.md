@@ -43,11 +43,24 @@ The uri of the bower dependencies
 ## Sample Configuration
 
 ```javascript
-    SQUEBI = {
-        selectService : "https://api.redlink.io/1.0-BETA/data/example/sparql/select",
-        updateService : "https://api.redlink.io/1.0-BETA/data/example/sparql/update",
-        queryParams : {
-            key : "mykeyasadditionalqueryparameter"
-        }
-    };
+SQUEBI = {
+    selectService : "https://api.redlink.io/1.0-BETA/data/example/sparql/select",
+    updateService : "https://api.redlink.io/1.0-BETA/data/example/sparql/update",
+    queryParams : {
+        key : "mykeyasadditionalqueryparameter"
+    }
+};
 ```
+
+# Use Squebi as Webjar
+You can use squebi in version 0.0.5 as webjar, too. The webjar is hosted on Maven Central. Put this dependencies to your pom
+
+```xml
+<dependency>
+    <groupId>com.github.tkurz.webjars</groupId>
+    <artifactId>squebi</artifactId>
+    <version>0.0.5-SNAPSHOT</version>
+</dependency>
+```
+
+Important: If you want to build your own webjar, please download the required bower dependencies first into the folder `bower_components`.
