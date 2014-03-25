@@ -12,5 +12,10 @@
     "angular-ui-codemirror": "0.1.0",
     "angular-bootstrap":"0.9.0",
     "require-css":"0.1.2"
-  }
+  },
+  "ignore": [
+    "pom.xml",
+    "R-logo.png"
+  ]
+
 }
