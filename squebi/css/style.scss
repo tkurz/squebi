@@ -33,7 +33,6 @@ $width: 830px;
 body {
   font: 14px $font-stack;
   color: $color6;
-  padding-top: 20px;
   padding-bottom: 20px;
 }
 
@@ -262,6 +261,10 @@ li.menuitem {
 .hint {
   position: absolute;
   z-index: 999;
+}
+
+.lang {
+  color: $color3;
 }
 
 @import 'code';

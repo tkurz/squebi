@@ -181,6 +181,28 @@ squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $s
 
     $rootScope.showResults = true;
 
+    /*function getSuggestions(uri) {
+
+        var suggestions = [];
+
+        rdfstore.create(function(store) {
+            store.load('remote', uri, function(success, result) {
+                if(success) {
+                    store.execute('PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT ?property ?label ?comment WHERE {{?property a rdfs:Class; rdfs:label ?label; rdfs:comment ?comment} UNION {?property a rdf:Property; rdfs:label ?label; rdfs:comment ?comment}}', function(success, results) {
+                        for(var i in results) {
+                            suggestions.push({
+                                property:results[i].property.value,
+                                label:results[i].label.value,
+                                comment:results[i].comment.value
+                            })
+                        }
+                        console.log(suggestions);
+                    })
+                }
+            });
+        });
+    }*/
+
     /**
      * Autocompletion using prefix.cc
      * @param cm
@@ -218,6 +240,7 @@ squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $s
                                 async: false,
                                 success: function(data) {
                                     result = data[prefix];
+                                    SQUEBI.namespaces[result] = prefix;
                                 },
                                 dataType: "json"
                             });
@@ -253,7 +276,14 @@ squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $s
                 },{
                     completeSingle: false
                 });
-            }
+            }/* else {
+                //get suggestions for prefix
+                for(var property in SQUEBI.namespaces) {
+                    if(SQUEBI.namespaces[property] == prefix) {
+                        getSuggestions(property);
+                    }
+                }
+            }*/
         }
     }
 

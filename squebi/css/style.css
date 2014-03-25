@@ -2,7 +2,6 @@
 body {
   font: 14px Helvetica, sans-serif;
   color: #666666;
-  padding-top: 20px;
   padding-bottom: 20px; }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -206,6 +205,9 @@ li.menuitem a {
 .hint {
   position: absolute;
   z-index: 999; }
+
+.lang {
+  color: #0a82c7; }
 
 /* CODE MIRROR */
 .CodeMirror {
