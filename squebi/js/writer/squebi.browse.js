@@ -7,6 +7,8 @@ squebi.run( function($extension,SQUEBI) {
         showFlags : true
     }
 
+    if(SQUEBI.browse) jQuery.extend(config, SQUEBI.browse);
+
     //var query_for_resource = "PREFIX ###NAME###: <###NSP###>\n\nSELECT DISTINCT ?property ?hasValue ?isValueOf WHERE {\n  { ###URI### ?property ?hasValue }\nUNION\n  { ?isValueOf ?property ###URI### }\n} ORDER BY (!BOUND(?hasValue)) ?property ?hasValue ?isValueOf";
     //var query_for_property = "PREFIX ###NAME###: <###NSP###>\n\nSELECT DISTINCT ?resource ?value WHERE {\n  ?resource ###URI### ?value\n} ORDER BY ?resource ?value";
     //var query_for_class = "PREFIX ###NAME###: <###NSP###>\n\nSELECT DISTINCT ?instance WHERE {\n  ?instance a ###URI###\n} ORDER BY ?instance";
