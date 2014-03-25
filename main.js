@@ -22,8 +22,8 @@ requirejs.config({
         squebiBrowse : "squebi/js/writer/squebi.browse",
         squebiJson : "squebi/js/writer/squebi.json",
         squebiXml : "squebi/js/writer/squebi.xml",
-        squebiPie: "squebi/js/writer/squebi.pie",
-        rdfstoreJs: SQUEBI.bower + "/rdfstore-js/dist/browser/rdf_store"
+        squebiPie: "squebi/js/writer/squebi.pie"
+        //rdfstoreJs: SQUEBI.bower + "/rdfstore-js/dist/browser/rdf_store"
     },
     shim: {
         'goog': ['async','propertyParser'],
@@ -33,7 +33,7 @@ requirejs.config({
         'codemirrorSparql' : ['_codemirror'],
         'codemirrorUI' : ['_codemirror','bootstrapUI'],
         'codemirrorHint' : ['_codemirror'],
-        '_squebi' : ['codemirrorHint','codemirrorUI','codemirrorSparql','bootstrapUI','rdfstoreJs'],
+        '_squebi' : ['codemirrorHint','codemirrorUI','codemirrorSparql','bootstrapUI'],//,'rdfstoreJs'
         'squebiBrowse' : ['_squebi'],
         'squebiJson' : ['_squebi'],
         'squebiXml' : ['_squebi'],
