@@ -36,7 +36,7 @@ The identifier (#id or .class) for the container that should be used for the app
 **default: '#squebi'**
 
 ## appLoader : String
-The container that is shown before the app is loaded completely. This container is hided on app startup complete.
+The identifier (#id or .class) for the container that is shown before the app is loaded completely. This container is hided on app startup complete.
 
 **default: '#appLoader'**
 
