@@ -30,12 +30,12 @@ If UI allows SPARQL update queries
 ### namespaces : Object
 Namespace prefixes as path:'prefix' pairs. Als prefixes that are not defined here will be looked up on prefix.cc.
 
-## container : String
+### container : String
 The identifier (#id or .class) for the container that should be used for the application.
 
 **default: '#squebi'**
 
-## appLoader : String
+### appLoader : String
 The identifier (#id or .class) for the container that is shown before the app is loaded completely. This container is hided on app startup complete.
 
 **default: '#appLoader'**
