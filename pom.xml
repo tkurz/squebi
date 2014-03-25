@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+
+    <packaging>jar</packaging>
+    <groupId>com.github.tkurz.webjars</groupId>
+    <artifactId>squebi</artifactId>
+    <version>0.0.5-SNAPSHOT</version>
+    <name>squebi</name>
+    <description>WebJar for Squebi</description>
+    <url>https://github.com/tkurz/squebi</url>
+
+    <developers>
+        <developer>
+            <id>tkurz</id>
+            <name>Thomas Kurz</name>
+            <email>th.kurz@gmail.com</email>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>Apache Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/tkurz/squebi.git</url>
+        <connection>scm:git:git@github.com:tkurz/squebi.git</connection>
+        <developerConnection>scm:git:git@github.com:tkurz/squebi.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${project.version}</destDir>
+    </properties>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5</version>
+            </plugin>
+
+        </plugins>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/bower_components</directory>
+                <targetPath>${destDir}</targetPath>
+            </resource>
+            <resource>
+                <directory>${project.basedir}/squebi</directory>
+                <targetPath>${destDir}/squebi</targetPath>
+            </resource>
+            <resource>
+                <directory>${project.basedir}</directory>
+                <targetPath>${destDir}</targetPath>
+                <includes>
+                    <include>main.js</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+
+</project>
