@@ -2,7 +2,8 @@ if(window.SQUEBI == undefined) SQUEBI = {};
 
 SQUEBI.app = SQUEBI.app || ".";
 SQUEBI.bower = SQUEBI.bower || "bower_components";
-SQUEBI.container = SQUEBI.container || "body";
+SQUEBI.container = SQUEBI.container || "#squebi";
+SQUEBI.appLoader = SQUEBI.appLoader || "#appLoader";
 
 requirejs.config({
     paths: {
@@ -11,9 +12,9 @@ requirejs.config({
         goog : SQUEBI.bower + "/requirejs-plugins/src/goog",
         jquery : SQUEBI.bower + "/jquery/dist/jquery",
         angular : SQUEBI.bower + "/angular/angular",
-        bootstrap : SQUEBI.bower + "/bootstrap/dist/js/bootstrap",
+        _bootstrap : SQUEBI.bower + "/bootstrap/dist/js/bootstrap",
         bootstrapUI : SQUEBI.bower + "/angular-bootstrap/ui-bootstrap",
-        codemirror : SQUEBI.bower + "/codemirror/lib/codemirror",
+        _codemirror : SQUEBI.bower + "/codemirror/lib/codemirror",
         codemirrorSparql : SQUEBI.bower + "/codemirror/mode/sparql/sparql",
         codemirrorUI : SQUEBI.bower + "/angular-ui-codemirror/ui-codemirror",
         codemirrorHint : SQUEBI.bower + "/codemirror/addon/hint/show-hint",
@@ -21,42 +22,42 @@ requirejs.config({
         squebiBrowse : "squebi/js/writer/squebi.browse",
         squebiJson : "squebi/js/writer/squebi.json",
         squebiXml : "squebi/js/writer/squebi.xml",
-        squebiPie: "squebi/js/writer/squebi.pie"
+        squebiPie: "squebi/js/writer/squebi.pie",
+        rdfstoreJs: SQUEBI.bower + "/rdfstore-js/dist/browser/rdf_store"
     },
     shim: {
         'goog': ['async','propertyParser'],
         'angular' : ['jquery'],
-        'bootstrap' : ['jquery'],
-        'bootstrapUI' : ['angular','bootstrap'],
-        'codemirrorSparql' : ['codemirror'],
-        'codemirrorUI' : ['codemirror','bootstrapUI'],
-        'codemirrorHint' : ['codemirror'],
-        '_squebi' : ['codemirrorHint','codemirrorUI','codemirrorSparql','bootstrapUI'],
+        '_bootstrap' : ['jquery'],
+        'bootstrapUI' : ['angular','_bootstrap'],
+        'codemirrorSparql' : ['_codemirror'],
+        'codemirrorUI' : ['_codemirror','bootstrapUI'],
+        'codemirrorHint' : ['_codemirror'],
+        '_squebi' : ['codemirrorHint','codemirrorUI','codemirrorSparql','bootstrapUI','rdfstoreJs'],
         'squebiBrowse' : ['_squebi'],
         'squebiJson' : ['_squebi'],
         'squebiXml' : ['_squebi'],
         'squebiPie' : ['_squebi']
     },map: {
         '*': {
-            'css': SQUEBI.bower + '/require-css/css'
+            '_css': SQUEBI.bower + '/require-css/css'
         }
     }
 });
 
 require([
-    "css",
     "squebiBrowse",
     "squebiJson",
     "squebiXml",
     'goog!visualization,1,packages:[corechart]',
     "squebiPie",
-    "css!squebi/css/flags",
-    "css!" + SQUEBI.bower + "/bootstrap/dist/css/bootstrap",
-    "css!" + SQUEBI.bower + "/codemirror/lib/codemirror",
-    "css!" + SQUEBI.bower + "/codemirror/theme/neat",
-    "css!" + SQUEBI.bower + "/codemirror/addon/hint/show-hint",
-    "css!" + SQUEBI.bower + "/fontawesome/css/font-awesome",
-    "css!squebi/css/style"
+    "_css!squebi/css/flags",
+    "_css!" + SQUEBI.bower + "/bootstrap/dist/css/bootstrap",
+    "_css!" + SQUEBI.bower + "/codemirror/lib/codemirror",
+    "_css!" + SQUEBI.bower + "/codemirror/theme/neat",
+    "_css!" + SQUEBI.bower + "/codemirror/addon/hint/show-hint",
+    "_css!" + SQUEBI.bower + "/fontawesome/css/font-awesome",
+    "_css!squebi/css/style"
 ], function() {
 
     angular.element(document).ready(function($http,$rootScope) {
@@ -89,6 +90,7 @@ require([
         }
 
         jQuery.extend(defaultConfig, SQUEBI);
+        jQuery(SQUEBI.appLoader).hide();
         jQuery(SQUEBI.container).show();
         squebi.constant('SQUEBI', defaultConfig);
         angular.bootstrap(SQUEBI.container, ['Squebi']);
