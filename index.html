@@ -17,9 +17,11 @@
             }
         </style>
     </head>
-    <body style="display: none">
-
-        <div class="container" >
+    <body>
+        <div id="appLoader" style="margin-top: 100px; text-align: center;">
+            <img src="squebi/img/ajax-loader-big.gif">
+        </div>
+        <div style="display: none" class="container" id="squebi">
             <div ng-controller="SampleCtrl" class="header">
                 <div ng-show="showHint">
                     <div ng-click="showHint = false" class="hint-overlay"></div>
