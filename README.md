@@ -62,7 +62,7 @@ SQUEBI = {
 };
 ```
 
-# Use Squebi as Webjar
+## Use Squebi as Webjar
 You can use squebi in version 0.0.5 as webjar, too. The webjar is hosted on Maven Central. Put this dependencies to your pom
 
 ```xml
