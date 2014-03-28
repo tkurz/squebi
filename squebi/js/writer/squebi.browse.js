@@ -60,7 +60,10 @@ squebi.run( function($extension,SQUEBI) {
 
         } else if(data.type == 'construct') {
             $scope.template = SQUEBI.app + '/squebi/template/basic.html';
-            $rootScope.alerts.push({type:"warning",msg:"Data Browser does not support 'Construct' queries."});
+            $rootScope.alerts.push({type:"warning",msg:"Data Browser does not support 'Construct' queries. Use a different result writer!"});
+        } else if(data.type == 'describe') {
+            $scope.template = SQUEBI.app + '/squebi/template/basic.html';
+            $rootScope.alerts.push({type:"warning",msg:"Data Browser does not support 'Describe' queries. Use a different result writer!"});
         } else if(data.type == 'ask') {
             $scope.template = SQUEBI.app + '/squebi/template/basic.html';
             if(data.data.boolean) {
