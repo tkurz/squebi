@@ -22,7 +22,8 @@ requirejs.config({
         squebiBrowse : "squebi/js/writer/squebi.browse",
         squebiJson : "squebi/js/writer/squebi.json",
         squebiXml : "squebi/js/writer/squebi.xml",
-        squebiPie: "squebi/js/writer/squebi.pie"
+        squebiPie: "squebi/js/writer/squebi.pie",
+        squebiRdfdot: "squebi/js/writer/squebi.rdfdot"
         //rdfstoreJs: SQUEBI.bower + "/rdfstore-js/dist/browser/rdf_store"
     },
     shim: {
@@ -37,6 +38,7 @@ requirejs.config({
         'squebiBrowse' : ['_squebi'],
         'squebiJson' : ['_squebi'],
         'squebiXml' : ['_squebi'],
+        'squebiRdfdot' : ['_squebi'],
         'squebiPie' : ['_squebi']
     },map: {
         '*': {
@@ -49,6 +51,7 @@ require([
     "squebiBrowse",
     "squebiJson",
     "squebiXml",
+    "squebiRdfdot",
     'goog!visualization,1,packages:[corechart]',
     "squebiPie",
     "_css!squebi/css/flags",
@@ -70,6 +73,7 @@ require([
                 {"name":"List types", "value":"SELECT DISTINCT ?type WHERE {\n  [] a ?type\n} ORDER BY ?type","type":"browse"},
                 {"name":"List properties", "value":"SELECT DISTINCT ?property WHERE {\n  [] ?property []\n} ORDER BY ?property","type":"browse"},
                 {"name":"List classes and count their usage as pie chart", "value":"SELECT ?class (COUNT (?s) AS ?count) WHERE {\n  ?s a ?class\n}\nGROUP BY ?class\nORDER BY DESC(?count)","type":"piechart"},
+                {"name":"Draw a graph that describes a resource", "value":"DESCRIBE <http://example/faust1>", "type":"rdfdot"},
                 {"name":"Insert a new book to the bookstore","value":"PREFIX dc: <http://purl.org/dc/elements/1.1/>\nINSERT DATA {\n  <http://example/faust1> dc:title \"Faust I\" ;\n                         a <http://example/Book> ;\n                         dc:creator <http://example.org/goethe> .\n}"}
             ],
             "hints": [

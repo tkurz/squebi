@@ -343,7 +343,7 @@ squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $s
                     $scope.query.trim(),
                     {},
                     function(){
-                        $rootScope.$emit('querySuccess',{type:type, data:{type: 'info', msg: 'Query performed successful'}});
+                        $rootScope.$emit('querySuccess',{type:type.trim(), data:{type: 'info', msg: 'Query performed successful'}});
                     }, function(data){
                         $rootScope.$emit('queryFailure',{type: 'danger', msg: data instanceof Object ? data.message : data});
                     }
@@ -362,7 +362,7 @@ squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $s
                     $scope.query.trim(),
                     {acceptType: format},
                     function(data){
-                        $rootScope.$emit('querySuccess',{type:type, data:data, query:$scope.query.trim()});
+                        $rootScope.$emit('querySuccess',{type:type.trim(), data:data, query:$scope.query.trim()});
                     }, function(data){
                         $rootScope.$emit('queryFailure',{type: 'danger', msg: data instanceof Object ? data.message : data});
                     }
