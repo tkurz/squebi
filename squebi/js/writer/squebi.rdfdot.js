@@ -14,11 +14,11 @@ squebi.run( function($extension,$http,SQUEBI){
             params: {'output':'png', 'input':'xml', 'base64':true}
         })
             .success(function(data, status, headers, config) {
-                scope.loader = false;
+                rootScope.loader = false;
                 scope.image = data;
             }).
             error(function(data, status, headers, config) {
-                scope.loader = false;
+                rootScope.loader = false;
                 rootScope.alerts.push({type:"error",msg:"Could not render image"});
             });
     }
@@ -27,7 +27,7 @@ squebi.run( function($extension,$http,SQUEBI){
 
         if($.inArray(data.type, ["construct", "describe"]) != -1) {
             $scope.image = null;
-            $scope.loader = true;
+            $rootScope.loader = true;
 
             $scope.template = SQUEBI.app + '/squebi/template/rdfdot.html';
 
