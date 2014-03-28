@@ -209,6 +209,24 @@ li.menuitem a {
 .lang {
   color: #0a82c7; }
 
+.modal-table {
+  width: 100%; }
+
+.modal-table tr td:first-child {
+  width: 160px;
+  font-weight: bold; }
+
+.modal-table tr td {
+  padding-bottom: 5px;
+  vertical-align: top; }
+
+.modal-table input {
+  width: 100%; }
+
+.modal-body h3 {
+  color: #0a82c7;
+  font-weight: bold; }
+
 /* CODE MIRROR */
 .CodeMirror {
   height: 250px;

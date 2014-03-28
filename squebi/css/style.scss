@@ -267,4 +267,27 @@ li.menuitem {
   color: $color3;
 }
 
+.modal-table {
+  width: 100%;
+}
+
+.modal-table tr td:first-child {
+  width: 160px;
+  font-weight: bold;
+}
+
+.modal-table tr td {
+  padding-bottom: 5px;
+  vertical-align: top;
+}
+
+.modal-table input {
+  width: 100%;
+}
+
+.modal-body h3 {
+  color: $color3;
+  font-weight: bold;
+}
+
 @import 'code';

@@ -12,8 +12,10 @@ requirejs.config({
         goog : SQUEBI.bower + "/requirejs-plugins/src/goog",
         jquery : SQUEBI.bower + "/jquery/dist/jquery",
         angular : SQUEBI.bower + "/angular/angular",
+        angularLocalStorage : SQUEBI.bower + "/angular-local-storage/angular-local-storage",
         _bootstrap : SQUEBI.bower + "/bootstrap/dist/js/bootstrap",
         bootstrapUI : SQUEBI.bower + "/angular-bootstrap/ui-bootstrap",
+        uiBootstrapTpls: SQUEBI.bower + "/angular-bootstrap/ui-bootstrap-tpls",
         _codemirror : SQUEBI.bower + "/codemirror/lib/codemirror",
         codemirrorSparql : SQUEBI.bower + "/codemirror/mode/sparql/sparql",
         codemirrorUI : SQUEBI.bower + "/angular-ui-codemirror/ui-codemirror",
@@ -31,10 +33,12 @@ requirejs.config({
         'angular' : ['jquery'],
         '_bootstrap' : ['jquery'],
         'bootstrapUI' : ['angular','_bootstrap'],
+        'angularLocalStorage' : ['angular'],
+        'uiBootstrapTpls' : ['bootstrapUI'],
         'codemirrorSparql' : ['_codemirror'],
         'codemirrorUI' : ['_codemirror','bootstrapUI'],
         'codemirrorHint' : ['_codemirror'],
-        '_squebi' : ['codemirrorHint','codemirrorUI','codemirrorSparql','bootstrapUI'],//,'rdfstoreJs'
+        '_squebi' : ['codemirrorHint','codemirrorUI','codemirrorSparql','bootstrapUI','uiBootstrapTpls','angularLocalStorage'],//,'rdfstoreJs'
         'squebiBrowse' : ['_squebi'],
         'squebiJson' : ['_squebi'],
         'squebiXml' : ['_squebi'],
@@ -66,6 +70,7 @@ require([
     angular.element(document).ready(function($http,$rootScope) {
 
         var defaultConfig = {
+            "configurable" : false,
             "selectService": "http://example.org/sparql/select",
             "updateService": "http://example.org/sparql/update",
             "samples": [

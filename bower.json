@@ -11,7 +11,8 @@
     "fontawesome": "4.0.3",
     "angular-ui-codemirror": "0.1.0",
     "angular-bootstrap":"0.9.0",
-    "require-css":"0.1.2"
+    "require-css":"0.1.2",
+    "angular-local-storage":"0.0.1"
   },
   "ignore": [
     "pom.xml",

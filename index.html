@@ -3,6 +3,7 @@
         <!-- Dependencies -->
         <script type="text/javascript">
             SQUEBI = {
+                configurable : true,
                 selectService : "https://api.redlink.io/1.0-BETA/data/squebi/sparql/select",
                 updateService : "https://api.redlink.io/1.0-BETA/data/squebi/sparql/update",
                 queryParams : {
@@ -41,6 +42,31 @@
                     </li>
                     <li><a href="http://github.com/tkurz/sparql-mm" target="_blank">Repository</a></li>
                     <li><a href="mailto:thomas.kurz@salzburgresearch.at">Contact</a></li>
+                    <li ng-controller="ConfigurationCtrl" >
+                        <a ng-show="configurable" style="cursor: pointer" ng-click="open()">Configuration</a>
+                        <script type="text/ng-template" id="configuration.html">
+
+                            <div class="modal-body">
+                                <h3>Generic Parameters</h3>
+                                <table class="modal-table">
+                                    <tr><td>Select Endpoint</td><td><input ng-model="data.updateService"></td></tr>
+                                    <tr><td>Update Endpoint</td><td><input ng-model="data.selectService"></td></tr>
+                                </table>
+                                <h3>Query Parameters</h3>
+                                <table class="modal-table">
+                                    <tr ng-repeat="param in data.queryParams">
+                                        <td>{{param.name}}</td><td><input ng-model="param.value"></td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+                                <button class="btn btn-danger" ng-click="reset()">Reset</button>
+                                <button class="btn btn-primary" ng-click="store()">Store</button>
+                            </div>
+                        </script>
+                    </li>
                 </ul>
                 <h3 class="text-muted">Squebi</h3>
                 <h4 class="subtitle">The SPARQL Interface</h4>

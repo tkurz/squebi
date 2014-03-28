@@ -3,9 +3,14 @@
  * @type {module|*}
  */
 var squebi = angular.module( 'Squebi',[
-    'ui.codemirror'
-    ,'ui.bootstrap'
+    'ui.codemirror',
+    'ui.bootstrap',
+    'LocalStorageModule'
 ]);
+
+squebi.config(['localStorageServiceProvider', function(localStorageServiceProvider){
+    localStorageServiceProvider.setPrefix('squebi.');
+}]);
 
 /**
  * To register
@@ -107,6 +112,7 @@ squebi.service("$sparql", function ($http, SQUEBI) {
 squebi.controller( 'SampleCtrl', function( SQUEBI, $rootScope, $sparql, $http, $scope, $sce ) {
 
     $scope.showHint = false;
+    $scope.configurable = SQUEBI.configurable;
     $scope.hint = SQUEBI.hints && SQUEBI.hints.length > 0;
     $scope.hints = [];
 
@@ -451,4 +457,75 @@ squebi.controller( 'ResultCtrl', function( SQUEBI, $timeout, $rootScope, $scope 
 
 });
 
+squebi.controller( 'ConfigurationCtrl', function ($scope, $modal, SQUEBI, localStorageService) {
+
+    var queryParams = [];
+
+    for(var property in SQUEBI.queryParams) {
+        queryParams.push({name:property,value:SQUEBI.queryParams[property]});
+    }
+
+    $scope.data = {
+        updateService: SQUEBI.updateService,
+        selectService: SQUEBI.selectService,
+        queryParams : queryParams
+    }
+
+    var ModalInstanceCtrl = function ($scope, $modalInstance, data) {
+
+        $scope.data = data;
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss();
+        };
+
+        $scope.store = function () {
+            $modalInstance.close($scope.data);
+        };
+
+        $scope.reset = function() {
+            $modalInstance.close();
+        }
+    };
+
+    $scope.open = function () {
+
+        $modal.open({
+            templateUrl: 'configuration.html',
+            controller: ModalInstanceCtrl,
+            resolve: {
+                data: function () {
+                    return $scope.data;
+                }
+            }
+        }).result.then(function(data){
+
+            if(data == undefined) {
+
+                localStorageService.clearAll();
+                window.location.reload(false);
+
+            } else {
+
+                SQUEBI.updateService = data.updateService;
+                localStorageService.set('updateService', data.updateService);
+
+                SQUEBI.selectService = data.selectService;
+                localStorageService.set('selectService', data.selectService);
+
+                SQUEBI.queryParams = {};
+                for(var i in data.queryParams) {
+                    SQUEBI.queryParams[data.queryParams[i].name] = data.queryParams[i].value;
+                }
+                localStorageService.set('queryParams', SQUEBI.queryParams);
+            }
+        });
+    };
+});
+
+squebi.run(function(localStorageService, SQUEBI) {
+    if(localStorageService.get('updateService')) SQUEBI.updateService = localStorageService.get('updateService');
+    if(localStorageService.get('selectService')) SQUEBI.selectService = localStorageService.get('selectService');
+    if(localStorageService.get('queryParams')) SQUEBI.queryParams = localStorageService.get('queryParams');
+});
 
