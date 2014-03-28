@@ -352,6 +352,7 @@ squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $s
             case 'ask':
             case 'select':
             case 'construct':
+            case 'describe':
 
                 var format = type.trim() == 'select' ? 'application/sparql-results+' + $rootScope.writer.format : 'application/' + $rootScope.writer.format;
 
@@ -367,11 +368,10 @@ squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $s
                     }
                 );
                 break;
-            case 'describe':
-                $scope.alerts.push({type:"info",msg:"DESCRIBE query not yet supported"});
-                break;
+
             default :
                 $rootScope.alerts.push({type: 'warning', msg: 'Query is not supported'});
+                $rootScope.loader = false;
         }
     }
 
