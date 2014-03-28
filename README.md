@@ -30,6 +30,16 @@ If UI allows SPARQL update queries
 ### namespaces : Object
 Namespace prefixes as path:'prefix' pairs. Als prefixes that are not defined here will be looked up on prefix.cc.
 
+### container : String
+The identifier (#id or .class) for the container that should be used for the application.
+
+**default: '#squebi'**
+
+### appLoader : String
+The identifier (#id or .class) for the container that is shown before the app is loaded completely. This container is hided on app startup complete.
+
+**default: '#appLoader'**
+
 ### app : String
 The uri of the squebi app
 
@@ -43,11 +53,24 @@ The uri of the bower dependencies
 ## Sample Configuration
 
 ```javascript
-    SQUEBI = {
-        selectService : "https://api.redlink.io/1.0-BETA/data/example/sparql/select",
-        updateService : "https://api.redlink.io/1.0-BETA/data/example/sparql/update",
-        queryParams : {
-            key : "mykeyasadditionalqueryparameter"
-        }
-    };
+SQUEBI = {
+    selectService : "https://api.redlink.io/1.0-BETA/data/example/sparql/select",
+    updateService : "https://api.redlink.io/1.0-BETA/data/example/sparql/update",
+    queryParams : {
+        key : "mykeyasadditionalqueryparameter"
+    }
+};
 ```
+
+## Use Squebi as Webjar
+You can use squebi in version 0.0.5 as webjar, too. The webjar is hosted on Maven Central. Put this dependencies to your pom
+
+```xml
+<dependency>
+    <groupId>com.github.tkurz.webjars</groupId>
+    <artifactId>squebi</artifactId>
+    <version>0.0.5-SNAPSHOT</version>
+</dependency>
+```
+
+Important: If you want to build your own webjar, please download the required bower dependencies first into the folder `bower_components`.
