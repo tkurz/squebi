@@ -24,6 +24,7 @@ requirejs.config({
         squebiBrowse : "squebi/js/writer/squebi.browse",
         squebiJson : "squebi/js/writer/squebi.json",
         squebiXml : "squebi/js/writer/squebi.xml",
+        squebiCsv : "squebi/js/writer/squebi.csv",
         squebiPie: "squebi/js/writer/squebi.pie",
         squebiRdfdot: "squebi/js/writer/squebi.rdfdot"
         //rdfstoreJs: SQUEBI.bower + "/rdfstore-js/dist/browser/rdf_store"
@@ -42,6 +43,7 @@ requirejs.config({
         'squebiBrowse' : ['_squebi'],
         'squebiJson' : ['_squebi'],
         'squebiXml' : ['_squebi'],
+        'squebiCsv' : ['_squebi'],
         'squebiRdfdot' : ['_squebi'],
         'squebiPie' : ['_squebi']
     },map: {
@@ -55,6 +57,7 @@ require([
     "squebiBrowse",
     "squebiJson",
     "squebiXml",
+    "squebiCsv",
     "squebiRdfdot",
     'goog!visualization,1,packages:[corechart]',
     "squebiPie",
