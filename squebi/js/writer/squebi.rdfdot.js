@@ -45,5 +45,5 @@ squebi.run( function($extension,$http,SQUEBI){
     }
 
     var writer = $extension.createResultWriter("rdfdot","RDF.dot", "xml", "Displays SPARQL Construct query as graph image", onsuccess, onfailure);
-    writer.position = 5;
+    writer.position = 6;
 });

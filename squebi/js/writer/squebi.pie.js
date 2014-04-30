@@ -106,5 +106,5 @@ squebi.run( function($extension,SQUEBI) {
     }
 
     var writer = $extension.createResultWriter("piechart","Piechart", "json", "Displays SPARQL result as Pie Chart", onsuccess, onfailure);
-    writer.position = 4;
+    writer.position = 5;
 });

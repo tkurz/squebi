@@ -4,7 +4,7 @@
 squebi.run( function($extension,SQUEBI){
 
     function buildLink(query) {
-        var query = SQUEBI.selectService + "?query=" + encodeURIComponent(query) + "&output=json";
+        var query = SQUEBI.selectService + "?query=" + encodeURIComponent(query) + "&out=json";
         if(SQUEBI.queryParams) {
             for(var property in SQUEBI.queryParams) {
                 query += "&" + property + "=" + SQUEBI.queryParams[property];
@@ -33,5 +33,5 @@ squebi.run( function($extension,SQUEBI){
     }
 
     var writer = $extension.createResultWriter("json","JSON", "json", "Displays SPARQL result as JSON", onsuccess, onfailure);
-    writer.position = 2;
+    writer.position = 3;
 });
