@@ -360,7 +360,19 @@ squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $s
             case 'construct':
             case 'describe':
 
-                var format = type.trim() == 'select' ? 'application/sparql-results+' + $rootScope.writer.format : 'application/' + $rootScope.writer.format;
+                var format = undefined;
+                if(typeof($rootScope.writer.format) === "string") { //because of backwards compatibility
+                    format = type.trim() == 'select' ? 'application/sparql-results+' + $rootScope.writer.format : 'application/' + $rootScope.writer.format;
+                } else {
+                    if($rootScope.writer.format[type.trim()] == undefined) {
+                        $rootScope.alerts.push({type: 'warning', msg: 'Query is not supported'});
+                        $rootScope.loader = false;
+                        break;
+                    } else {
+                        format = $rootScope.writer.format[type.trim()];
+                    }
+                }
+
 
                 $rootScope.showResults = true;
                 

@@ -33,5 +33,5 @@ squebi.run( function($extension,SQUEBI){
     }
 
     var writer = $extension.createResultWriter("csv","CSV", {select:"text/csv"}, "Displays SPARQL result as CSV", onsuccess, onfailure);
-    writer.position = 2;
+    writer.position = 4;
 });
