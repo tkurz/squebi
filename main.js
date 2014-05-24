@@ -26,7 +26,8 @@ requirejs.config({
         squebiXml : "squebi/js/writer/squebi.xml",
         squebiCsv : "squebi/js/writer/squebi.csv",
         squebiPie: "squebi/js/writer/squebi.pie",
-        squebiRdfdot: "squebi/js/writer/squebi.rdfdot"
+        squebiRdfdot: "squebi/js/writer/squebi.rdfdot",
+        squebiMedia : "squebi/js/writer/squebi.media"
         //rdfstoreJs: SQUEBI.bower + "/rdfstore-js/dist/browser/rdf_store"
     },
     shim: {
@@ -45,7 +46,8 @@ requirejs.config({
         'squebiXml' : ['_squebi'],
         'squebiCsv' : ['_squebi'],
         'squebiRdfdot' : ['_squebi'],
-        'squebiPie' : ['_squebi']
+        'squebiPie' : ['_squebi'],
+        'squebiMedia' : ['_squebi']
     },map: {
         '*': {
             '_css': SQUEBI.bower + '/require-css/css'
@@ -59,6 +61,7 @@ require([
     "squebiXml",
     "squebiCsv",
     "squebiRdfdot",
+    "squebiMedia",
     'goog!visualization,1,packages:[corechart]',
     "squebiPie",
     "_css!squebi/css/flags",
@@ -82,6 +85,8 @@ require([
                 {"name":"List properties", "value":"SELECT DISTINCT ?property WHERE {\n  [] ?property []\n} ORDER BY ?property","type":"browse"},
                 {"name":"List classes and count their usage as pie chart", "value":"SELECT ?class (COUNT (?s) AS ?count) WHERE {\n  ?s a ?class\n}\nGROUP BY ?class\nORDER BY DESC(?count)","type":"piechart"},
                 {"name":"Draw a graph from data", "value":"CONSTRUCT {?a ?b ?c} WHERE {?a ?b ?c} LIMIT 5", "type":"rdfdot"},
+                {"name":"Show me the video fragments where T. Gilkz shows a Backflip after a Backflip Heelclicker", "value":"PREFIX mm: <http://linkedmultimedia.org/sparql-mm/functions#>\nPREFIX ma: <http://www.w3.org/ns/ma-ont#>\nPREFIX dct: <http://purl.org/dc/terms/>\n\nSELECT (mm:boundingBox(?l3,?l2) AS ?result) WHERE {\n\t?f1 ma:locator ?l1; dct:subject <http://linkedmultimedia.org/data/concept/person/Tyrone_Gilkz>.\n\t?f2 ma:locator ?l2; dct:subject <http://linkedmultimedia.org/data/concept/trick/Backflip>.\n\t?f3 ma:locator ?l3; dct:subject <http://linkedmultimedia.org/data/concept/trick/Backflip_Heelclicker>.\n\n\tFILTER mm:temporalContains(?l1,?l2)\n\tFILTER mm:temporalContains(?l1,?l3)\nFILTER mm:after(?l2,?l3)} LIMIT 10", "type":"media"},
+                {"name":"2", "value":"CONSTRUCT {?a ?b ?c} WHERE {?a ?b ?c} LIMIT 5", "type":"rdfdot"},
                 {"name":"Insert a new book to the bookstore","value":"PREFIX dc: <http://purl.org/dc/elements/1.1/>\nINSERT DATA {\n  <http://example/faust1> dc:title \"Faust I\" ;\n                         a <http://example/Book> ;\n                         dc:creator <http://example.org/goethe> .\n}"}
             ],
             "hints": [
