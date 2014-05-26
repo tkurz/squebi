@@ -209,6 +209,65 @@ squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $s
         });
     }*/
 
+    var suggestRegex = new RegExp("\\s+([A-Za-z]+):([A-Za-z]+)$",'ig');
+
+    function checkSuggestion(cm) {
+        var c = cm.getCursor();
+        var line = cm.getRange({'line': c.line, 'ch': 0},{'line': c.line, 'ch': c.ch});
+        var match = suggestRegex.exec(line);
+        if(match) {
+            for(var property in SQUEBI.namespaces) {
+                if(SQUEBI.namespaces[property] == match[1]) {
+                    var prefix = property+match[2];
+                    var query = 'SELECT DISTINCT ?uri WHERE {{[] ?uri [].FILTER(STRSTARTS(STR(?uri), "'+prefix+'"))} UNION {[] ?b ?uri.FILTER(STRSTARTS(STR(?uri), "'+prefix+'"))}}'
+
+                    function replace(replacement,from,to) {
+                        cm.setSelection(from, to);
+                        cm.replaceSelection(replacement);
+                        c.ch = c.ch + replacement.length;
+                        cm.setCursor(c);
+                    }
+
+                    var key = (SQUEBI.queryParams && SQUEBI.queryParams.key) ? "&key=" + SQUEBI.queryParams.key : "";
+
+                    jQuery.ajax(SQUEBI.selectService + "?query=" + encodeURIComponent(query) + "&out=json" + key, {
+                         async: false,
+                         dataType: "json",
+                         success: function(data) {
+
+                             var list = [];
+
+                             var from = {line: c.line, ch: c.ch - match[0].length};
+                             var to = {line: c.line, ch: c.ch};
+
+                             for(var i = 0; i < data.results.bindings.length; i++) {
+                                 var r = SQUEBI.namespaces[property]+":"+data.results.bindings[i].uri.value.substring(property.length);
+                                 (function(r){
+                                     list.push({
+                                         text: r,
+                                         hint: function() {
+                                             replace(" "+r+" ",from, to);
+                                         }
+                                     });
+                                 }(r))
+                             }
+
+                             CodeMirror.showHint(cm, function(cm, self, data) {
+                                 return {
+                                     list: list,
+                                     from: from,
+                                     to: to
+                                 }
+                             },{
+                                 completeSingle: false
+                             });
+                         }
+                     });
+                }
+            }
+        }
+    }
+
     /**
      * Autocompletion using prefix.cc
      * @param cm
@@ -216,7 +275,7 @@ squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $s
     function checkAutocomplete(cm) {
 
         var c = cm.getCursor();
-        var line = cm.getRange({'line': c.line, 'ch': 0},{'line': c.line, 'ch': c.ch})
+        var line = cm.getRange({'line': c.line, 'ch': 0},{'line': c.line, 'ch': c.ch});
         if(line[line.length - 1] == ':') {
             //get prefix
             var prefix = /.*[\s.,;\{\}]([^:]+):$/g.exec(line)[1];
@@ -282,14 +341,16 @@ squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $s
                 },{
                     completeSingle: false
                 });
-            }/* else {
+            } else {
                 //get suggestions for prefix
-                for(var property in SQUEBI.namespaces) {
+
+
+                /*for(var property in SQUEBI.namespaces) {
                     if(SQUEBI.namespaces[property] == prefix) {
                         getSuggestions(property);
                     }
-                }
-            }*/
+                }*/
+            }
         }
     }
 
@@ -301,8 +362,12 @@ squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $s
         theme: 'mdn-like sparql-mm',
         //extraKeys: {"Ctrl-Space": "autocomplete"},
         onKeyEvent: function(i, e) {
-            if(e.type == 'keyup' && e.keyIdentifier == "Shift") {
-                checkAutocomplete(i);
+            if(e.type == 'keyup') {
+                if(e.keyIdentifier == "Shift") {
+                    checkAutocomplete(i);
+                } else {
+                    checkSuggestion(i);
+                }
             }
         }
     };

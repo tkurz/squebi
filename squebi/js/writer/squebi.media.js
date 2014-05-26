@@ -6,7 +6,7 @@ squebi.config(function($sceDelegateProvider) {
         // Allow same origin resource loads.
         'self',
         // Allow loading from our assets domain.  Notice the difference between * and **.
-        'https://www.redbullcontentpool.com/resources/**']);
+        'http://localhost:8080/DATA/**']);
 });
 
 squebi.run( function($extension,SQUEBI,$timeout){
@@ -20,7 +20,7 @@ squebi.run( function($extension,SQUEBI,$timeout){
         var _h = Math.floor(340*(xywh[3]/100));
         var _l = -300 + 600*xywh[0]/100;
         var _t = 100 + 340*xywh[1]/100;
-        return "width:"+_w+"px;height:"+_h+"px;margin-left:"+_l+";top:"+_t+"px";
+        return "width:"+_w+"px;height:"+_h+"px;margin-left:"+_l+"px;top:"+_t+"px";
     }
 
     function parseFragment(uri) {
@@ -66,9 +66,9 @@ squebi.run( function($extension,SQUEBI,$timeout){
 
             var type = undefined;
 
-            if(uri.indexOf(".mp4") != -1) {
+            if(uri.indexOf(".mp4") != -1 || uri.indexOf(".ogv") != -1 || uri.indexOf(".avi") != -1) {
                 type = 'video'
-            } else if(uri.indexOf(".png") != -1) {
+            } else if(uri.indexOf(".png") != -1 || uri.indexOf(".jpg") != -1 || uri.indexOf(".gif") != -1) {
                 type = 'image'
             }
 

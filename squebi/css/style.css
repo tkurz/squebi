@@ -298,6 +298,9 @@ li.menuitem a {
   -webkit-box-shadow: 0 0 15px 1px #e5e5e5;
   box-shadow: 0 0 15px 1px #e5e5e5; }
 
+.table-browse {
+  background-color: white; }
+
 /* CODE MIRROR */
 .CodeMirror {
   height: 250px;
