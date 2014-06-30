@@ -1,7 +1,14 @@
 Squebi
 ======
 
-The SPARQL Interface.
+Squebi is a SPARQL editor and SPARQL result visualizer with some nice features:
+
+* customization of SPARQL result visualization
+* support for SPARQL 1.1 (update and select)
+* bookmarkable uris that define queries and the visualization type
+* support for SPARQL query editing (URIs, ontologies and prefixes)
+* fast backend switch (quite useful for demo)
+* nice GUI
 
 Installation
 ------------
