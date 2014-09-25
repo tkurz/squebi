@@ -8,7 +8,8 @@ var squebi = angular.module( 'Squebi',[
     'LocalStorageModule'
 ]);
 
-squebi.config(['localStorageServiceProvider', function(localStorageServiceProvider){
+squebi.config(['localStorageServiceProvider', '$logProvider', function(localStorageServiceProvider, $logProvider){
+    $logProvider.debugEnabled(false);
     localStorageServiceProvider.setPrefix('squebi.');
 }]);
 
@@ -181,7 +182,7 @@ squebi.controller( 'FormatCtrl', function( SQUEBI, $extension, $rootScope, $spar
 /**
  * A controller that issues the query
  */
-squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $scope, $location, $extension ) {
+squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $scope, $location, $extension, $log ) {
 
     $scope.query = $rootScope.sample;
 
@@ -392,9 +393,12 @@ squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $s
      * run the query
      */
     $scope.runQuery = function() {
+
         $rootScope.alerts = [];
 
         var type = getQueryType($scope.query.trim());
+
+        $log.debug("run " + type + " query " + $scope.query.trim());
 
         $rootScope.loader = true;
 
@@ -465,7 +469,9 @@ squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $s
     })
 
     $scope.triggerQuery = function() {
-        $location.search("query",query);
+        if($location.search().query == query) {
+            $scope.runQuery();
+        } else $location.search("query",query);
     }
 
     $scope.$on('$locationChangeSuccess', function () {
