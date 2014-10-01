@@ -88,7 +88,7 @@ li.menuitem a {
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
   border-radius: 10px;
-  height: auto;
+  height: 250px;
   width: 100%;
   overflow: hidden; }
 
@@ -331,7 +331,7 @@ li.menuitem a {
   color: #0A82C7; }
 
 .CodeMirror-wrap .CodeMirror-scroll {
-  overflow-y: hidden;
+  overflow: hidden;
   overflow-x: auto; }
 
 .cm-s-mdn-like .CodeMirror-linenumber {
