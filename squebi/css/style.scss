@@ -133,7 +133,7 @@ li.menuitem {
 #query-container {
   border: 1px solid $color7;
   @include border-radius(10px);
-  height: 250px;
+  height: auto;
   width: 100%;
   overflow: hidden;
 }

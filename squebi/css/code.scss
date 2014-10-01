@@ -1,6 +1,6 @@
 /* CODE MIRROR */
 .CodeMirror {
-  height: 250px;
+  height: auto;
   margin: 0 auto;
   text-align: left;
   line-height: 18px;
@@ -36,7 +36,8 @@
 }
 
 .CodeMirror-wrap .CodeMirror-scroll {
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: auto;
 }
 
 .cm-s-mdn-like .CodeMirror-linenumber {

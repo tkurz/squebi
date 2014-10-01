@@ -16,7 +16,7 @@ squebi.config(['localStorageServiceProvider', '$logProvider', function(localStor
 /**
  * To register
  */
-squebi.service("$extension", function ($rootScope) {
+squebi.service("$extension", function ($rootScope,SQUEBI) {
 
     var extension = {
         resultWriter : []
@@ -47,7 +47,20 @@ squebi.service("$extension", function ($rootScope) {
         extension.resultWriter = extension.resultWriter.sort(function(a,b) {
             return a.position <= b.position ? -1 : 1;
         });
-        return extension.resultWriter;
+
+        //filter out id they are not set
+        var filtered = [];
+
+        if(SQUEBI.writers) {
+            for(var i = 0; i < extension.resultWriter.length; i++) {
+                for(var j = 0; j < SQUEBI.writers.length; j++) {
+                    if(SQUEBI.writers[j] == extension.resultWriter[i].id) {
+                        filtered.push(extension.resultWriter[i]);
+                    }
+                }
+            }
+            return filtered;
+        } else return extension.resultWriter;
     }
 
     this.selectResultWriter = function(writer) {
@@ -69,7 +82,9 @@ squebi.service("$extension", function ($rootScope) {
  * a service for sparql endpoints
  */
 squebi.service("$sparql", function ($http, SQUEBI) {
+
     this.query = function(query, options, onsuccess, onfailure) {
+
         $http({
             url: SQUEBI.selectService,
             method: "POST",
@@ -77,7 +92,8 @@ squebi.service("$sparql", function ($http, SQUEBI) {
             params: SQUEBI.queryParams,
             headers: {
                 'Content-Type': 'application/sparql-query',
-                'Accept': options.acceptType
+                'Accept': options.acceptType,
+                'X-Auth-Token': SQUEBI.token
             }
         })
             .success(function(data, status, headers, config) {
@@ -95,7 +111,8 @@ squebi.service("$sparql", function ($http, SQUEBI) {
             data: query,
             params: SQUEBI.queryParams,
             headers: {
-                'Content-Type': 'application/sparql-update'
+                'Content-Type': 'application/sparql-update',
+                'X-Auth-Token': SQUEBI.token
             }
         })
             .success(function(data, status, headers, config) {
