@@ -364,10 +364,10 @@ squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $s
         //extraKeys: {"Ctrl-Space": "autocomplete"},
         onKeyEvent: function(i, e) {
             if(e.type == 'keyup') {
-                if(e.keyIdentifier == "Shift") {
+                if(e.keyCode == 16) {
                     checkAutocomplete(i);
                 } else {
-                    if(e.keyIdentifier == "Down" || e.keyIdentifier == "Up") return;
+                    if(e.keyCode == 38|| e.keyCode == 39) return;
                     checkSuggestion(i);
                 }
             }
