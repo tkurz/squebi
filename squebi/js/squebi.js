@@ -205,28 +205,6 @@ squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $s
 
     $rootScope.showResults = true;
 
-    /*function getSuggestions(uri) {
-
-        var suggestions = [];
-
-        rdfstore.create(function(store) {
-            store.load('remote', uri, function(success, result) {
-                if(success) {
-                    store.execute('PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT ?property ?label ?comment WHERE {{?property a rdfs:Class; rdfs:label ?label; rdfs:comment ?comment} UNION {?property a rdf:Property; rdfs:label ?label; rdfs:comment ?comment}}', function(success, results) {
-                        for(var i in results) {
-                            suggestions.push({
-                                property:results[i].property.value,
-                                label:results[i].label.value,
-                                comment:results[i].comment.value
-                            })
-                        }
-                        console.log(suggestions);
-                    })
-                }
-            });
-        });
-    }*/
-
     var suggestRegex = new RegExp("\\s+([A-Za-z]+):([A-Za-z]+)$",'ig');
 
     function checkSuggestion(cm) {
@@ -234,55 +212,60 @@ squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $s
         var line = cm.getRange({'line': c.line, 'ch': 0},{'line': c.line, 'ch': c.ch});
         var match = suggestRegex.exec(line);
         if(match) {
-            for(var property in SQUEBI.namespaces) {
-                if(SQUEBI.namespaces[property] == match[1]) {
-                    var prefix = property+match[2];
-                    var query = 'SELECT DISTINCT ?uri WHERE {{[] ?uri [].FILTER(STRSTARTS(STR(?uri), "'+prefix+'"))} UNION {[] ?b ?uri.FILTER(STRSTARTS(STR(?uri), "'+prefix+'"))}}'
 
-                    function replace(replacement,from,to) {
-                        cm.setSelection(from, to);
-                        cm.replaceSelection(replacement);
-                        c.ch = c.ch + replacement.length;
-                        cm.setCursor(c);
+            function replace(replacement,from,to) {
+                cm.setSelection(from, to);
+                cm.replaceSelection(replacement);
+                c.ch = c.ch + replacement.length;
+                cm.setCursor(c);
+            }
+
+            function showHint(from, to, list) {
+                CodeMirror.showHint(cm, function(cm, self, data) {
+                    return {
+                        list: list,
+                        from: from,
+                        to: to
+                    }
+                },{
+                    completeSingle: false
+                });
+            }
+
+            var query = match[1]+":"+match[2];
+
+            jQuery.ajax("http://lov.okfn.org/dataset/lov/api/v2/autocomplete/terms?q=" + query, {
+                async: false,
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
+
+                    var list = [];
+
+                    var from = {line: c.line, ch: c.ch - match[0].length};
+                    var to = {line: c.line, ch: c.ch};
+
+                    for(var i = 0; i < data.results.length; i++) {
+                        var r = data.results[i].prefixedName;
+
+                        if(query == r) {
+                            list = [];
+                            break;
+                        }
+
+                        (function(r){
+                            list.push({
+                                text: r,
+                                hint: function() {
+                                    replace(" "+r+" ",from, to);
+                                }
+                            });
+                        }(r))
                     }
 
-                    var key = (SQUEBI.queryParams && SQUEBI.queryParams.key) ? "&key=" + SQUEBI.queryParams.key : "";
-
-                    jQuery.ajax(SQUEBI.selectService + "?query=" + encodeURIComponent(query) + "&out=json" + key, {
-                         async: false,
-                         dataType: "json",
-                         success: function(data) {
-
-                             var list = [];
-
-                             var from = {line: c.line, ch: c.ch - match[0].length};
-                             var to = {line: c.line, ch: c.ch};
-
-                             for(var i = 0; i < data.results.bindings.length; i++) {
-                                 var r = SQUEBI.namespaces[property]+":"+data.results.bindings[i].uri.value.substring(property.length);
-                                 (function(r){
-                                     list.push({
-                                         text: r,
-                                         hint: function() {
-                                             replace(" "+r+" ",from, to);
-                                         }
-                                     });
-                                 }(r))
-                             }
-
-                             CodeMirror.showHint(cm, function(cm, self, data) {
-                                 return {
-                                     list: list,
-                                     from: from,
-                                     to: to
-                                 }
-                             },{
-                                 completeSingle: false
-                             });
-                         }
-                     });
+                    showHint(from, to, list);
                 }
-            }
+            });
         }
     }
 
@@ -384,6 +367,7 @@ squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $s
                 if(e.keyIdentifier == "Shift") {
                     checkAutocomplete(i);
                 } else {
+                    if(e.keyIdentifier == "Down" || e.keyIdentifier == "Up") return;
                     checkSuggestion(i);
                 }
             }

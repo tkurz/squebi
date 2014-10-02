@@ -45,7 +45,11 @@
 }
 
 .CodeMirror-hint {
-  background: $color1;
+  background: $color9;
   max-width: 1000px;
   padding: 2px 10px;
+}
+
+.CodeMirror-hint-active {
+  background: $color1;
 }

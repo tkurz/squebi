@@ -338,8 +338,11 @@ li.menuitem a {
   margin-left: -5px; }
 
 .CodeMirror-hint {
-  background: #F2940A;
+  background: white;
   max-width: 1000px;
   padding: 2px 10px; }
+
+.CodeMirror-hint-active {
+  background: #F2940A; }
 
 /*# sourceMappingURL=style.css.map */
