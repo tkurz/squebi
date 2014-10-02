@@ -238,7 +238,6 @@ squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $s
                 async: false,
                 dataType: "json",
                 success: function(data) {
-                    console.log(data);
 
                     var list = [];
 
