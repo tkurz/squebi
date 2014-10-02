@@ -69,7 +69,7 @@ require([
     "_css!" + SQUEBI.bower + "/codemirror/lib/codemirror",
     "_css!" + SQUEBI.bower + "/codemirror/theme/neat",
     "_css!" + SQUEBI.bower + "/codemirror/addon/hint/show-hint",
-    "_css!" + SQUEBI.bower + "/fontawesome/css/font-awesome",
+    "_css!" + SQUEBI.bower + "/components-font-awesome/css/font-awesome",
     "_css!squebi/css/style"
 ], function() {
 
