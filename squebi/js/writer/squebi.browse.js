@@ -13,9 +13,9 @@ squebi.run( function($extension,SQUEBI) {
     //var query_for_property = "PREFIX ###NAME###: <###NSP###>\n\nSELECT DISTINCT ?resource ?value WHERE {\n  ?resource ###URI### ?value\n} ORDER BY ?resource ?value";
     //var query_for_class = "PREFIX ###NAME###: <###NSP###>\n\nSELECT DISTINCT ?instance WHERE {\n  ?instance a ###URI###\n} ORDER BY ?instance";
 
-    var query_for_resource = "SELECT DISTINCT ?property ?hasValue ?isValueOf WHERE {\n  { ###URI### ?property ?hasValue }\nUNION\n  { ?isValueOf ?property ###URI### }\n} ORDER BY ?property ?hasValue ?isValueOf";
-    var query_for_property = "SELECT DISTINCT ?resource ?value WHERE {\n  ?resource ###URI### ?value\n} ORDER BY ?resource ?value";
-    var query_for_class = "SELECT DISTINCT ?instance WHERE {\n  ?instance a ###URI###\n} ORDER BY ?instance";
+    var query_for_resource = "SELECT ?property ?hasValue ?isValueOf WHERE {\n  { ###URI### ?property ?hasValue }\nUNION\n  { ?isValueOf ?property ###URI### }\n} ORDER BY ?property ?hasValue ?isValueOf LIMIT 100";
+    var query_for_property = "SELECT ?resource ?value WHERE {\n  ?resource ###URI### ?value\n} ORDER BY ?resource ?value LIMIT 100";
+    var query_for_class = "SELECT ?instance WHERE {\n  ?instance a ###URI###\n} ORDER BY ?instance LIMIT 100";
 
     function getQuery(uri,name) {
 
