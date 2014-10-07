@@ -389,10 +389,16 @@ squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $s
         return match != undefined ? match[0].toLowerCase() : undefined;
     }
 
+    var firstLoad = true;
+
     /**
      * run the query
      */
     $scope.runQuery = function() {
+
+        if(firstLoad && !SQUEBI.automaticQuery) {
+            firstLoad = false; return;
+        }
 
         $rootScope.alerts = [];
 

@@ -79,6 +79,7 @@ require([
             "configurable" : false,
             "selectService": "http://example.org/sparql/select",
             "updateService": "http://example.org/sparql/update",
+            "automaticQuery": true,
             "samples": [
                 {"name":"Select first 10 triples", "value":"SELECT * WHERE {\n  ?subject ?property ?object\n} LIMIT 10","type":"browse"},
                 {"name":"List types", "value":"SELECT DISTINCT ?type WHERE {\n  [] a ?type\n} ORDER BY ?type","type":"browse"},
