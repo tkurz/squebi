@@ -91,7 +91,7 @@ squebi.service("$sparql", function ($http, SQUEBI) {
             data: query,
             params: SQUEBI.queryParams,
             headers: {
-                'Content-Type': 'application/sparql-query',
+                'Content-Type': 'application/sparql-query' + (document.charset ? (";charset=" + document.charset) : ""),
                 'Accept': options.acceptType,
                 'X-Auth-Token': SQUEBI.token
             }
@@ -111,7 +111,7 @@ squebi.service("$sparql", function ($http, SQUEBI) {
             data: query,
             params: SQUEBI.queryParams,
             headers: {
-                'Content-Type': 'application/sparql-update',
+                'Content-Type': 'application/sparql-update' + (document.charset ? (";charset=" + document.charset) : ""),
                 'X-Auth-Token': SQUEBI.token
             }
         })
