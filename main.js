@@ -25,9 +25,9 @@ requirejs.config({
         squebiJson : "squebi/js/writer/squebi.json",
         squebiXml : "squebi/js/writer/squebi.xml",
         squebiCsv : "squebi/js/writer/squebi.csv",
-        squebiPie: "squebi/js/writer/squebi.pie",
-        squebiRdfdot: "squebi/js/writer/squebi.rdfdot",
-        squebiMedia : "squebi/js/writer/squebi.media"
+        //squebiPie: "squebi/js/writer/squebi.pie",
+        //squebiRdfdot: "squebi/js/writer/squebi.rdfdot",
+        //squebiMedia : "squebi/js/writer/squebi.media"
         //rdfstoreJs: SQUEBI.bower + "/rdfstore-js/dist/browser/rdf_store"
     },
     shim: {
@@ -45,9 +45,9 @@ requirejs.config({
         'squebiJson' : ['_squebi'],
         'squebiXml' : ['_squebi'],
         'squebiCsv' : ['_squebi'],
-        'squebiRdfdot' : ['_squebi'],
-        'squebiPie' : ['_squebi'],
-        'squebiMedia' : ['_squebi']
+        //'squebiRdfdot' : ['_squebi'],
+        //'squebiPie' : ['_squebi'],
+        //'squebiMedia' : ['_squebi']
     },map: {
         '*': {
             '_css': SQUEBI.bower + '/require-css/css'
@@ -60,10 +60,10 @@ require([
     "squebiJson",
     "squebiXml",
     "squebiCsv",
-    "squebiRdfdot",
-    "squebiMedia",
-    'goog!visualization,1,packages:[corechart]',
-    "squebiPie",
+    //"squebiRdfdot",
+    //"squebiMedia",
+    //'goog!visualization,1,packages:[corechart]',
+    //"squebiPie",
     "_css!squebi/css/flags",
     "_css!" + SQUEBI.bower + "/bootstrap/dist/css/bootstrap",
     "_css!" + SQUEBI.bower + "/codemirror/lib/codemirror",
