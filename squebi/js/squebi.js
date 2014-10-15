@@ -456,7 +456,7 @@ squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $s
                     {acceptType: format},
                     function(data){
                         $rootScope.$emit('querySuccess',{type:type.trim(), data:data, query:$scope.query.trim()});
-                    }, function(data, status, headers, config){ console.log(SQUEBI.responseMessage , SQUEBI.responseMessage[status])
+                    }, function(data, status, headers, config){
                         var m = data instanceof Object ? data.message : data;
                         if(SQUEBI.responseMessage && SQUEBI.responseMessage[status]) {
                             m = SQUEBI.responseMessage[status];
