@@ -97,10 +97,10 @@ squebi.service("$sparql", function ($http, SQUEBI) {
             }
         })
             .success(function(data, status, headers, config) {
-                onsuccess(data);
+                onsuccess(data,status, headers, config);
             }).
             error(function(data, status, headers, config) {
-                onfailure(data);
+                onfailure(data,status, headers, config);
             });
     }
 
@@ -116,10 +116,10 @@ squebi.service("$sparql", function ($http, SQUEBI) {
             }
         })
             .success(function(data, status, headers, config) {
-                onsuccess(data);
+                onsuccess(data, status, headers, config);
             }).
             error(function(data, status, headers, config) {
-                onfailure(data);
+                onfailure(data, status, headers, config);
             });
     }
 });
@@ -456,14 +456,18 @@ squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $s
                     {acceptType: format},
                     function(data){
                         $rootScope.$emit('querySuccess',{type:type.trim(), data:data, query:$scope.query.trim()});
-                    }, function(data){
-                        $rootScope.$emit('queryFailure',{type: 'danger', msg: data instanceof Object ? data.message : data});
+                    }, function(data, status, headers, config){ console.log(SQUEBI.responseMessage , SQUEBI.responseMessage[status])
+                        var m = data instanceof Object ? data.message : data;
+                        if(SQUEBI.responseMessage && SQUEBI.responseMessage[status]) {
+                            m = SQUEBI.responseMessage[status];
+                        }
+                        $rootScope.$emit('queryFailure',{type: 'danger', msg: m});
                     }
                 );
                 break;
 
             default :
-                $rootScope.alerts.push({type: 'warning', msg: 'Query is not supported'});
+                $rootScope.alerts.push({type: 'warning', msg: 'The type of query is not supported'});
                 $rootScope.loader = false;
         }
     }

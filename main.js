@@ -106,7 +106,11 @@ require([
                 "http://www.w3.org/ns/ma-ont#":"ma",
                 "http://purl.org/dc/elements/1.1/":"dc"
             },
-            "updateAllowed": true
+            "updateAllowed": true,
+            "responseMessage": {
+                "404": "The service was not found or requires payment. Check your path and key in configuration.",
+                "500": "The query did not work. Maybe you little SPARQL mistake... :)"
+            }
         }
 
         jQuery.extend(defaultConfig, SQUEBI);
