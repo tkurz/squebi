@@ -34,11 +34,21 @@ The URI of the SPARQL select webservice (used via POST).
 ### updateService : String (required)
 The URI of the SPARQL update webservice (used via POST).
 
+### configurable : Boolean
+If squebi allows dynamic changes of SPARQL endpoints.
+
+**default: false**
+
+### automaticQuery : Boolean
+If squebi automatically sends the current query after the page is loaded.
+
+**default: true**
+
 ### queryParams : Object
 Additional query parameters as property:'value' pairs.
 
 ### updateAllowed : Boolean
-If UI allows SPARQL update queries
+If UI allows SPARQL update queries.
 
 **default: true**
 
@@ -56,14 +66,20 @@ The identifier (#id or .class) for the container that is shown before the app is
 **default: '#appLoader'**
 
 ### app : String
-The uri of the squebi app
+The uri of the squebi app.
 
 **default: '.'**
 
 ### bower : String
-The uri of the bower dependencies
+The uri of the bower dependencies.
 
 **default: 'bower_components'**
+
+### responseMessage : Object
+Custom response messages based on http response as 'number':'message' pairs. If no response message is defined, the server response is used for display.
+
+### samples : List<Object>
+A List if sample objects with properties 'name' (what is displayd), 'query', and 'type' (the id of the writer).
 
 ## Sample Configuration
 
