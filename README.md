@@ -78,8 +78,11 @@ The uri of the bower dependencies.
 ### responseMessage : Object
 Custom response messages based on http response as 'number':'message' pairs. If no response message is defined, the server response is used for display.
 
-### samples : List<Object>
+### samples : List <Object>
 A List if sample objects with properties 'name' (what is displayd), 'query', and 'type' (the id of the writer).
+
+## writers : List <String>
+A list that includes the ids of the writers which are enabled
 
 ## Sample Configuration
 
