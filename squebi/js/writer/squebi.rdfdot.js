@@ -8,7 +8,7 @@ squebi.run( function($extension,$http,SQUEBI){
 
     function getImage(data, scope, rootScope) {
         $http({
-            url: "http://rdfdot.dev.redlink.io/rdfdot/render",
+            url: "http://demo4.newmedialab.at/rdfdot/render",
             method: "POST",
             data: data.data,
             params: {'output':'png', 'input':'xml', 'base64':true}
