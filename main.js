@@ -110,7 +110,8 @@ require([
             "responseMessage": {
                 "404": "The service was not found or requires payment. Check your path and key in configuration.",
                 "500": "The query did not work. Maybe you little SPARQL mistake... :)"
-            }
+            },
+            "writers":["browse","xml","json","csv","piechart","rdfdot"]
         }
 
         jQuery.extend(defaultConfig, SQUEBI);
