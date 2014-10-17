@@ -1,6 +1,6 @@
 {
   "name": "Squebi",
-  "version": "0.0.9",
+  "version": "0.10.0",
   "main": ["main.js"],
   "dependencies": {
   	"requirejs":"2.1.11",
