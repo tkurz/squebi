@@ -10,6 +10,13 @@ Squebi is a SPARQL editor and SPARQL result visualizer with some nice features:
 * fast backend switch (quite useful for demo)
 * nice GUI
 
+Squebi is in use in the following projects and products:
+
+* [Apache Marmotta](http://marmotta.apache.org)
+* [Redlink Dashboard](http://redlink.co)
+* [MICO - Media in Context](http://mico-project.eu)
+* Salurgerland Tourismus GmbH
+
 Installation
 ------------
 
