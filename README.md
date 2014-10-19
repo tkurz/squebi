@@ -15,7 +15,7 @@ Squebi is in use in the following projects and products:
 * [Apache Marmotta](http://marmotta.apache.org)
 * [Redlink Dashboard](http://redlink.co)
 * [MICO - Media in Context](http://mico-project.eu)
-* [Salurgerland Data Hub](http://data.salzburgerland.com/dataset/events)
+* [Salzburgerland Data Hub](http://data.salzburgerland.com/dataset/events)
 
 Installation
 ------------
