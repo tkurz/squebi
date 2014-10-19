@@ -214,6 +214,7 @@ squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $s
         if(match) {
 
             function replace(replacement,from,to) {
+
                 cm.setSelection(from, to);
                 cm.replaceSelection(replacement);
                 c.ch = c.ch + replacement.length;
@@ -366,7 +367,7 @@ squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $s
                 if(e.keyCode == 16) {
                     checkAutocomplete(i);
                 } else {
-                    if(e.keyCode == 38|| e.keyCode == 39) return;
+                    if(e.keyCode == 37 || e.keyCode == 38|| e.keyCode == 39 || e.keyCode == 40) return;
                     checkSuggestion(i);
                 }
             }
