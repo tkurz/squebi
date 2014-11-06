@@ -1,25 +1,18 @@
-if(window.SQUEBI == undefined) SQUEBI = {};
-
-SQUEBI.app = SQUEBI.app || ".";
-SQUEBI.bower = SQUEBI.bower || "bower_components";
-SQUEBI.container = SQUEBI.container || "#squebi";
-SQUEBI.appLoader = SQUEBI.appLoader || "#appLoader";
-
 requirejs.config({
     paths: {
-        async : SQUEBI.bower + "/requirejs-plugins/src/async",
-        propertyParser : SQUEBI.bower + "/requirejs-plugins/src/propertyParser",
-        goog : SQUEBI.bower + "/requirejs-plugins/src/goog",
-        jquery : SQUEBI.bower + "/jquery/dist/jquery",
-        angular : SQUEBI.bower + "/angular/angular",
-        angularLocalStorage : SQUEBI.bower + "/angular-local-storage/angular-local-storage",
-        _bootstrap : SQUEBI.bower + "/bootstrap/dist/js/bootstrap",
-        bootstrapUI : SQUEBI.bower + "/angular-bootstrap/ui-bootstrap",
-        uiBootstrapTpls: SQUEBI.bower + "/angular-bootstrap/ui-bootstrap-tpls",
-        _codemirror : SQUEBI.bower + "/codemirror/lib/codemirror",
-        codemirrorSparql : SQUEBI.bower + "/codemirror/mode/sparql/sparql",
-        codemirrorUI : SQUEBI.bower + "/angular-ui-codemirror/ui-codemirror",
-        codemirrorHint : SQUEBI.bower + "/codemirror/addon/hint/show-hint",
+        async : "bower_components/requirejs-plugins/src/async",
+        propertyParser : "bower_components/requirejs-plugins/src/propertyParser",
+        //goog : "bower_components/requirejs-plugins/src/goog",
+        jquery : "bower_components/jquery/dist/jquery",
+        angular : "bower_components/angular/angular",
+        angularLocalStorage : "bower_components/angular-local-storage/angular-local-storage",
+        _bootstrap : "bower_components/bootstrap/dist/js/bootstrap",
+        bootstrapUI : "bower_components/angular-bootstrap/ui-bootstrap",
+        uiBootstrapTpls: "bower_components/angular-bootstrap/ui-bootstrap-tpls",
+        _codemirror : "bower_components/codemirror/lib/codemirror",
+        codemirrorSparql : "bower_components/codemirror/mode/sparql/sparql",
+        codemirrorUI : "bower_components/angular-ui-codemirror/ui-codemirror",
+        codemirrorHint : "bower_components/codemirror/addon/hint/show-hint",
         _squebi : "squebi/js/squebi",
         squebiBrowse : "squebi/js/writer/squebi.browse",
         squebiJson : "squebi/js/writer/squebi.json",
@@ -28,10 +21,10 @@ requirejs.config({
         squebiPie: "squebi/js/writer/squebi.pie",
         squebiRdfdot: "squebi/js/writer/squebi.rdfdot",
         squebiMedia : "squebi/js/writer/squebi.media"
-        //rdfstoreJs: SQUEBI.bower + "/rdfstore-js/dist/browser/rdf_store"
+        //rdfstoreJs: "bower_components/rdfstore-js/dist/browser/rdf_store"
     },
     shim: {
-        'goog': ['async','propertyParser'],
+        //'goog': ['async','propertyParser'],
         'angular' : ['jquery'],
         '_bootstrap' : ['jquery'],
         'bootstrapUI' : ['angular','_bootstrap'],
@@ -48,10 +41,6 @@ requirejs.config({
         'squebiRdfdot' : ['_squebi'],
         'squebiPie' : ['_squebi'],
         'squebiMedia' : ['_squebi']
-    },map: {
-        '*': {
-            '_css': SQUEBI.bower + '/require-css/css'
-        }
     }
 });
 
@@ -61,19 +50,18 @@ require([
     "squebiXml",
     "squebiCsv",
     "squebiRdfdot",
-    "squebiMedia",
-    'goog!visualization,1,packages:[corechart]',
-    "squebiPie",
-    "_css!squebi/css/flags",
-    "_css!" + SQUEBI.bower + "/bootstrap/dist/css/bootstrap",
-    "_css!" + SQUEBI.bower + "/codemirror/lib/codemirror",
-    "_css!" + SQUEBI.bower + "/codemirror/theme/neat",
-    "_css!" + SQUEBI.bower + "/codemirror/addon/hint/show-hint",
-    "_css!" + SQUEBI.bower + "/font-awesome/css/font-awesome",
-    "_css!squebi/css/style"
+    "squebiMedia"
+    //'goog!visualization,1,packages:[corechart]',
+    //"squebiPie"
 ], function() {
 
-    angular.element(document).ready(function($http,$rootScope) {
+    angular.element(document).ready(function() {
+
+        var SQUEBI = window.SQUEBI == undefined ? window.SQUEBI == undefined : {};
+
+        SQUEBI.app = SQUEBI.app || ".";
+        SQUEBI.container = SQUEBI.container || "#squebi";
+        SQUEBI.appLoader = SQUEBI.appLoader || "#appLoader";
 
         var defaultConfig = {
             "configurable" : false,
