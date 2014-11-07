@@ -2,7 +2,7 @@
     <head>
         <!-- Dependencies -->
         <script type="text/javascript">
-            SQUEBI = {
+            var SQUEBI = {
                 configurable : true,
                 selectService : "https://api.redlink.io/1.0-BETA/data/squebi/sparql/select",
                 updateService : "https://api.redlink.io/1.0-BETA/data/squebi/sparql/update",
@@ -11,7 +11,23 @@
                 }
             };
         </script>
+
+        <!-- PRODUCTION CONFIGURATION -->
+        <!--
+        <script data-main="dist/squebi" src="bower_components/requirejs/require.js"></script>
+        <link href="dist/squebi.css" rel="stylesheet" type="text/css">
+        -->
+
+        <!-- DEVELOP CONFIGURATION -->
+
         <script data-main="main" src="bower_components/requirejs/require.js"></script>
+        <link href="squebi/css/flags.css" rel="stylesheet" type="text/css">
+        <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+        <link href="bower_components/codemirror/lib/codemirror.css" rel="stylesheet" type="text/css">
+        <link href="bower_components/codemirror/theme/neat.css" rel="stylesheet" type="text/css">
+        <link href="bower_components/codemirror/addon/hint/show-hint.css" rel="stylesheet" type="text/css">
+        <link href="squebi/css/style.css" rel="stylesheet" type="text/css">
+
         <style>
             #redlink:hover {
                 text-decoration: none;
@@ -79,7 +95,7 @@
                     <textarea id="input" ng-model="query" ui-codemirror="editorOptions"></textarea>
                 </div>
                 <a class="btn btn-lg btn-success btn-query" ng-click="triggerQuery()">
-                    <i class="fa fa-play-circle"></i> Run
+                    Run
                 </a>
                 <a id="redlink" href="http://redlink.co" style="position: absolute;right:40px;bottom:98px">
                     <div style="color:#888;padding-right: 5px;display: inline; font-size: 16px">powered by</div><img title="Redlink" style="width: 25px;margin-top:-5px;" src="R-logo.png">

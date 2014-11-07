@@ -56,18 +56,12 @@
         </plugins>
         <resources>
             <resource>
-                <directory>${project.basedir}/bower_components</directory>
-                <targetPath>${destDir}</targetPath>
-            </resource>
-            <resource>
-                <directory>${project.basedir}/squebi</directory>
-                <targetPath>${destDir}/squebi</targetPath>
-            </resource>
-            <resource>
                 <directory>${project.basedir}</directory>
                 <targetPath>${destDir}</targetPath>
                 <includes>
-                    <include>main.js</include>
+                    <include>dist/squebi.js</include>
+                    <include>dist/squebi.css</include>
+                    <include>dist/index.html</include>
                 </includes>
             </resource>
         </resources>

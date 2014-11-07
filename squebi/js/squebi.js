@@ -16,7 +16,7 @@ squebi.config(['localStorageServiceProvider', '$logProvider', function(localStor
 /**
  * To register
  */
-squebi.service("$extension", function ($rootScope,SQUEBI) {
+squebi.service("$extension", ['$rootScope','SQUEBI', function ($rootScope, SQUEBI) {
 
     var extension = {
         resultWriter : []
@@ -76,12 +76,12 @@ squebi.service("$extension", function ($rootScope,SQUEBI) {
         }  //TODO should throw an exception?
     }
 
-});
+}]);
 
 /**
  * a service for sparql endpoints
  */
-squebi.service("$sparql", function ($http, SQUEBI) {
+squebi.service("$sparql", [ '$http', 'SQUEBI', function ($http, SQUEBI) {
 
     this.query = function(query, options, onsuccess, onfailure) {
 
@@ -122,12 +122,12 @@ squebi.service("$sparql", function ($http, SQUEBI) {
                 onfailure(data, status, headers, config);
             });
     }
-});
+}]);
 
 /**
  * A controller to load sample queries from configuration
  */
-squebi.controller( 'SampleCtrl', function( SQUEBI, $rootScope, $sparql, $http, $scope, $sce ) {
+squebi.controller( 'SampleCtrl', ['SQUEBI', '$rootScope', '$sparql', '$http', '$scope', '$sce', function( SQUEBI, $rootScope, $sparql, $http, $scope, $sce ) {
 
     $scope.showHint = false;
     $scope.configurable = SQUEBI.configurable;
@@ -177,10 +177,10 @@ squebi.controller( 'SampleCtrl', function( SQUEBI, $rootScope, $sparql, $http, $
             $rootScope.$emit('setQuery', sample.value);
         }
     }
-});
+}]);
 
 
-squebi.controller( 'FormatCtrl', function( SQUEBI, $extension, $rootScope, $sparql, $http, $scope ) {
+squebi.controller( 'FormatCtrl', ['SQUEBI', '$extension', '$rootScope', '$sparql', '$http', '$scope', function( SQUEBI, $extension, $rootScope, $sparql, $http, $scope ) {
 
     $scope.writers = $extension.listResultWriters();
 
@@ -194,12 +194,12 @@ squebi.controller( 'FormatCtrl', function( SQUEBI, $extension, $rootScope, $spar
         $rootScope.$emit('setWriter',writer.id);
         $event.preventDefault();
     }
-});
+}]);
 
 /**
  * A controller that issues the query
  */
-squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $scope, $location, $extension, $log ) {
+squebi.controller( 'QueryCtrl', [ 'SQUEBI', '$rootScope', '$sparql', '$http', '$scope', '$location', '$extension', '$log', function( SQUEBI, $rootScope, $sparql, $http, $scope, $location, $extension, $log ) {
 
     $scope.query = $rootScope.sample;
 
@@ -514,12 +514,12 @@ squebi.controller( 'QueryCtrl', function( SQUEBI, $rootScope, $sparql, $http, $s
         $location.search("writer",data);
     });
 
-});
+}]);
 
 /**
  * A controller to support alert messages
  */
-squebi.controller( 'AlertCtrl', function( SQUEBI, $timeout, $rootScope, $scope ) {
+squebi.controller( 'AlertCtrl', [ 'SQUEBI', '$timeout', '$rootScope', '$scope', function( SQUEBI, $timeout, $rootScope, $scope ) {
 
     $rootScope.alerts = [];
 
@@ -531,9 +531,9 @@ squebi.controller( 'AlertCtrl', function( SQUEBI, $timeout, $rootScope, $scope )
         var index = $rootScope.alerts.indexOf(alert);
         if(index != -1) $rootScope.alerts.splice(index,1);
     };
-});
+}]);
 
-squebi.controller( 'ResultCtrl', function( SQUEBI, $timeout, $rootScope, $scope ) {
+squebi.controller( 'ResultCtrl', [ 'SQUEBI', '$timeout', '$rootScope', '$scope', function( SQUEBI, $timeout, $rootScope, $scope ) {
 
     $scope.template = SQUEBI.app + '/squebi/template/basic.html';
 
@@ -549,9 +549,9 @@ squebi.controller( 'ResultCtrl', function( SQUEBI, $timeout, $rootScope, $scope 
         $rootScope.loader = false;
     });
 
-});
+}]);
 
-squebi.controller( 'ConfigurationCtrl', function ($scope, $modal, SQUEBI, localStorageService) {
+squebi.controller( 'ConfigurationCtrl', [ '$scope', '$modal', 'SQUEBI', 'localStorageService',  function ($scope, $modal, SQUEBI, localStorageService) {
 
     var queryParams = [];
 
@@ -615,11 +615,11 @@ squebi.controller( 'ConfigurationCtrl', function ($scope, $modal, SQUEBI, localS
             }
         });
     };
-});
+}]);
 
-squebi.run(function(localStorageService, SQUEBI) {
+squebi.run(['localStorageService', 'SQUEBI', function(localStorageService, SQUEBI) {
     if(localStorageService.get('updateService')) SQUEBI.updateService = localStorageService.get('updateService');
     if(localStorageService.get('selectService')) SQUEBI.selectService = localStorageService.get('selectService');
     if(localStorageService.get('queryParams')) SQUEBI.queryParams = localStorageService.get('queryParams');
-});
+}]);
 

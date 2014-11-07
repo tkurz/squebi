@@ -1,7 +1,6 @@
-@import "flags.css";
-@import "../../bower_components/bootstrap/dist/css/bootstrap.css";
-@import "../../bower_components/codemirror/lib/codemirror.css";
-@import "../../bower_components/codemirror/theme/neat.css";
-@import "../../bower_components/codemirror/addon/hint/show-hint.css";
-@import "../../bower_components/font-awesome/css/font-awesome.css";
-@import "style.css";
+@import url("flags.css");
+@import url("../../bower_components/bootstrap/dist/css/bootstrap.css");
+@import url("../../bower_components/codemirror/lib/codemirror.css");
+@import url("../../bower_components/codemirror/theme/neat.css");
+@import url("../../bower_components/codemirror/addon/hint/show-hint.css");
+@import url("style.css");

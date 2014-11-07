@@ -1,29 +1,29 @@
 requirejs.config({
-    paths: {
-        async : "bower_components/requirejs-plugins/src/async",
-        propertyParser : "bower_components/requirejs-plugins/src/propertyParser",
+    "paths": {
+        "async" : "bower_components/requirejs-plugins/src/async",
+        "propertyParser" : "bower_components/requirejs-plugins/src/propertyParser",
         //goog : "bower_components/requirejs-plugins/src/goog",
-        jquery : "bower_components/jquery/dist/jquery",
-        angular : "bower_components/angular/angular",
-        angularLocalStorage : "bower_components/angular-local-storage/angular-local-storage",
-        _bootstrap : "bower_components/bootstrap/dist/js/bootstrap",
-        bootstrapUI : "bower_components/angular-bootstrap/ui-bootstrap",
-        uiBootstrapTpls: "bower_components/angular-bootstrap/ui-bootstrap-tpls",
-        _codemirror : "bower_components/codemirror/lib/codemirror",
-        codemirrorSparql : "bower_components/codemirror/mode/sparql/sparql",
-        codemirrorUI : "bower_components/angular-ui-codemirror/ui-codemirror",
-        codemirrorHint : "bower_components/codemirror/addon/hint/show-hint",
-        _squebi : "squebi/js/squebi",
-        squebiBrowse : "squebi/js/writer/squebi.browse",
-        squebiJson : "squebi/js/writer/squebi.json",
-        squebiXml : "squebi/js/writer/squebi.xml",
-        squebiCsv : "squebi/js/writer/squebi.csv",
-        squebiPie: "squebi/js/writer/squebi.pie",
-        squebiRdfdot: "squebi/js/writer/squebi.rdfdot",
-        squebiMedia : "squebi/js/writer/squebi.media"
+        "jquery" : "bower_components/jquery/dist/jquery",
+        "angular" : "bower_components/angular/angular",
+        "angularLocalStorage" : "bower_components/angular-local-storage/angular-local-storage",
+        "_bootstrap" : "bower_components/bootstrap/dist/js/bootstrap",
+        "bootstrapUI" : "bower_components/angular-bootstrap/ui-bootstrap",
+        "uiBootstrapTpls": "bower_components/angular-bootstrap/ui-bootstrap-tpls",
+        "_codemirror" : "bower_components/codemirror/lib/codemirror",
+        "codemirrorSparql" : "bower_components/codemirror/mode/sparql/sparql",
+        "codemirrorUI" : "bower_components/angular-ui-codemirror/ui-codemirror",
+        "codemirrorHint" : "bower_components/codemirror/addon/hint/show-hint",
+        "_squebi" : "squebi/js/squebi",
+        "squebiBrowse" : "squebi/js/writer/squebi.browse",
+        "squebiJson" : "squebi/js/writer/squebi.json",
+        "squebiXml" : "squebi/js/writer/squebi.xml",
+        "squebiCsv" : "squebi/js/writer/squebi.csv",
+        "squebiPie": "squebi/js/writer/squebi.pie",
+        "squebiRdfdot": "squebi/js/writer/squebi.rdfdot",
+        "squebiMedia" : "squebi/js/writer/squebi.media"
         //rdfstoreJs: "bower_components/rdfstore-js/dist/browser/rdf_store"
     },
-    shim: {
+    "shim": {
         //'goog': ['async','propertyParser'],
         'angular' : ['jquery'],
         '_bootstrap' : ['jquery'],
@@ -57,7 +57,7 @@ require([
 
     angular.element(document).ready(function() {
 
-        var SQUEBI = window.SQUEBI == undefined ? window.SQUEBI == undefined : {};
+        var SQUEBI = window.SQUEBI != undefined ? window.SQUEBI : {};
 
         SQUEBI.app = SQUEBI.app || ".";
         SQUEBI.container = SQUEBI.container || "#squebi";
