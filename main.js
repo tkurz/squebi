@@ -59,7 +59,7 @@ require([
 
         var SQUEBI = window.SQUEBI != undefined ? window.SQUEBI : {};
 
-        SQUEBI.app = SQUEBI.app || ".";
+        SQUEBI.template = SQUEBI.template || "squebi/template";
         SQUEBI.container = SQUEBI.container || "#squebi";
         SQUEBI.appLoader = SQUEBI.appLoader || "#appLoader";
 
@@ -99,7 +99,8 @@ require([
                 "404": "The service was not found or requires payment. Check your path and key in configuration.",
                 "500": "The query did not work. Maybe you little SPARQL mistake... :)"
             },
-            "writers":["browse","xml","json","csv","piechart","rdfdot"]
+            "writers":["browse","xml","json","csv","piechart","rdfdot"],
+            "downloadEnabled":true
         }
 
         jQuery.extend(defaultConfig, SQUEBI);

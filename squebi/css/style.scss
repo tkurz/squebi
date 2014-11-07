@@ -162,7 +162,9 @@ li.menuitem {
 .download-button {
   position: absolute;
   margin-top: 5px !important;
-  margin-left: $width - 100;
+  margin-left: $width - 120;
+  font-size: 14px !important;
+  padding: 10px !important;
 }
 
 .loader {

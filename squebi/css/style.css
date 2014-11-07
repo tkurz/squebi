@@ -113,7 +113,9 @@ li.menuitem a {
 .download-button {
   position: absolute;
   margin-top: 5px !important;
-  margin-left: 730px; }
+  margin-left: 710px;
+  font-size: 14px !important;
+  padding: 10px !important; }
 
 .loader {
   text-align: center; }

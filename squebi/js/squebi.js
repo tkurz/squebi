@@ -31,7 +31,7 @@ squebi.service("$extension", ['$rootScope','SQUEBI', function ($rootScope, SQUEB
         this.onsuccess = onsuccess;
         this.onfailure = function($scope,data){
             $rootScope.alerts.push(data);
-            $scope.template = SQUEBI.app + '/squebi/template/basic.html';
+            $scope.template = SQUEBI.template + '/basic.html';
             if(onfailure) onfailure($scope,data);
         };
     }
@@ -535,7 +535,7 @@ squebi.controller( 'AlertCtrl', [ 'SQUEBI', '$timeout', '$rootScope', '$scope', 
 
 squebi.controller( 'ResultCtrl', [ 'SQUEBI', '$timeout', '$rootScope', '$scope', function( SQUEBI, $timeout, $rootScope, $scope ) {
 
-    $scope.template = SQUEBI.app + '/squebi/template/basic.html';
+    $scope.template = SQUEBI.template + '/basic.html';
 
     $rootScope.$on('querySuccess', function(e,data) {
         $rootScope.alerts = [];
@@ -617,9 +617,10 @@ squebi.controller( 'ConfigurationCtrl', [ '$scope', '$modal', 'SQUEBI', 'localSt
     };
 }]);
 
-squebi.run(['localStorageService', 'SQUEBI', function(localStorageService, SQUEBI) {
+squebi.run(['$rootScope','localStorageService', 'SQUEBI', function($rootScope, localStorageService, SQUEBI) {
     if(localStorageService.get('updateService')) SQUEBI.updateService = localStorageService.get('updateService');
     if(localStorageService.get('selectService')) SQUEBI.selectService = localStorageService.get('selectService');
     if(localStorageService.get('queryParams')) SQUEBI.queryParams = localStorageService.get('queryParams');
+    $rootScope.downloadEnabled = SQUEBI.downloadEnabled;
 }]);
 
