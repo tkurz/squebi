@@ -13,3 +13,4 @@ mkdir dist
 mv squebi.js dist/squebi.js
 mv squebi.css dist/squebi.css
 cp -R squebi/template dist/template
+cp -R squebi/img dist/img

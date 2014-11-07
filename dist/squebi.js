@@ -45888,7 +45888,7 @@ squebi.service("$extension", ['$rootScope','SQUEBI', function ($rootScope, SQUEB
         this.onsuccess = onsuccess;
         this.onfailure = function($scope,data){
             $rootScope.alerts.push(data);
-            $scope.template = SQUEBI.app + '/squebi/template/basic.html';
+            $scope.template = SQUEBI.template + '/basic.html';
             if(onfailure) onfailure($scope,data);
         };
     }
@@ -46392,7 +46392,7 @@ squebi.controller( 'AlertCtrl', [ 'SQUEBI', '$timeout', '$rootScope', '$scope', 
 
 squebi.controller( 'ResultCtrl', [ 'SQUEBI', '$timeout', '$rootScope', '$scope', function( SQUEBI, $timeout, $rootScope, $scope ) {
 
-    $scope.template = SQUEBI.app + '/squebi/template/basic.html';
+    $scope.template = SQUEBI.template + '/basic.html';
 
     $rootScope.$on('querySuccess', function(e,data) {
         $rootScope.alerts = [];
@@ -46474,10 +46474,11 @@ squebi.controller( 'ConfigurationCtrl', [ '$scope', '$modal', 'SQUEBI', 'localSt
     };
 }]);
 
-squebi.run(['localStorageService', 'SQUEBI', function(localStorageService, SQUEBI) {
+squebi.run(['$rootScope','localStorageService', 'SQUEBI', function($rootScope, localStorageService, SQUEBI) {
     if(localStorageService.get('updateService')) SQUEBI.updateService = localStorageService.get('updateService');
     if(localStorageService.get('selectService')) SQUEBI.selectService = localStorageService.get('selectService');
     if(localStorageService.get('queryParams')) SQUEBI.queryParams = localStorageService.get('queryParams');
+    $rootScope.downloadEnabled = SQUEBI.downloadEnabled;
 }]);
 
 
@@ -46540,17 +46541,17 @@ squebi.run( function($extension,SQUEBI) {
 
         if($.inArray(data.type, ["drop", "insert", "delete"]) != -1) {
 
-            $scope.template = SQUEBI.app + '/squebi/template/basic.html';
+            $scope.template = SQUEBI.template + '/basic.html';
             $rootScope.alerts.push(data.data);
 
         } else if(data.type == 'construct') {
-            $scope.template = SQUEBI.app + '/squebi/template/basic.html';
+            $scope.template = SQUEBI.template + '/basic.html';
             $rootScope.alerts.push({type:"warning",msg:"Data Browser does not support 'Construct' queries. Use a different result writer!"});
         } else if(data.type == 'describe') {
-            $scope.template = SQUEBI.app + '/squebi/template/basic.html';
+            $scope.template = SQUEBI.template + '/basic.html';
             $rootScope.alerts.push({type:"warning",msg:"Data Browser does not support 'Describe' queries. Use a different result writer!"});
         } else if(data.type == 'ask') {
-            $scope.template = SQUEBI.app + '/squebi/template/basic.html';
+            $scope.template = SQUEBI.template + '/basic.html';
             if(data.data.boolean) {
                 $rootScope.alerts.push({type:"success",msg:"The answer is YES."});
             } else {
@@ -46560,14 +46561,12 @@ squebi.run( function($extension,SQUEBI) {
 
             $scope.getDisplayName = getDisplayName;
 
-            $scope.transparent = SQUEBI.app + '/squebi/img/transparent.gif';
-
             $scope.headers = data.data.head.vars;
             $scope.bindings = data.data.results.bindings;
 
             $scope.showFlags = config.showFlags;
 
-            $scope.template = SQUEBI.app + '/squebi/template/browse.html';
+            $scope.template = SQUEBI.template + '/browse.html';
 
             $scope.selectURI = function(uri,name) {
                 var query = getQuery(uri,name);
@@ -46600,20 +46599,20 @@ squebi.run( function($extension,SQUEBI){
     var onsuccess = function($scope,data,$rootScope) {
 
         if($.inArray(data.type, ["drop", "insert", "delete"]) != -1) {
-            $scope.template = SQUEBI.app + '/squebi/template/basic.html';
+            $scope.template = SQUEBI.template + '/basic.html';
             $rootScope.alerts.push(data.data);
 
         } else {
             $scope.data = angular.toJson(data.data, true);
             $scope.href = buildLink(data.query);
 
-            $scope.template = SQUEBI.app + '/squebi/template/data.html';
+            $scope.template = SQUEBI.template + '/data.html';
         }
 
     }
 
     var onfailure = function($scope,data,$rootScope) {
-        $scope.template = SQUEBI.app + '/squebi/template/basic.html';
+        $scope.template = SQUEBI.template + '/basic.html';
     }
 
     var writer = $extension.createResultWriter("json","JSON", "json", "Displays SPARQL result as JSON", onsuccess, onfailure);
@@ -46639,20 +46638,20 @@ squebi.run( function($extension,SQUEBI){
     var onsuccess = function($scope,data,$rootScope) {
 
         if($.inArray(data.type, ["drop", "insert","delete"]) != -1) {
-            $scope.template = SQUEBI.app + '/squebi/template/basic.html';
+            $scope.template = SQUEBI.template + '/basic.html';
             $rootScope.alerts.push(data.data);
 
         } else {
             $scope.data = data.data;
             $scope.href = buildLink(data.query);
 
-            $scope.template = SQUEBI.app + '/squebi/template/data.html';
+            $scope.template = SQUEBI.template + '/data.html';
         }
 
     }
 
     var onfailure = function($scope,data,$rootScope) {
-        $scope.template = SQUEBI.app + '/squebi/template/basic.html';
+        $scope.template = SQUEBI.template + '/basic.html';
     }
 
     var writer = $extension.createResultWriter("xml","XML", "xml", "Displays SPARQL result as XML", onsuccess, onfailure);
@@ -46678,20 +46677,20 @@ squebi.run( function($extension,SQUEBI){
     var onsuccess = function($scope,data,$rootScope) {
 
         if($.inArray(data.type, ["drop", "insert", "delete"]) != -1) {
-            $scope.template = SQUEBI.app + '/squebi/template/basic.html';
+            $scope.template = SQUEBI.template + '/basic.html';
             $rootScope.alerts.push(data.data);
 
         } else {
             $scope.data = data.data, true;
             $scope.href = buildLink(data.query);
 
-            $scope.template = SQUEBI.app + '/squebi/template/data.html';
+            $scope.template = SQUEBI.template + '/data.html';
         }
 
     }
 
     var onfailure = function($scope,data,$rootScope) {
-        $scope.template = SQUEBI.app + '/squebi/template/basic.html';
+        $scope.template = SQUEBI.template + '/basic.html';
     }
 
     var writer = $extension.createResultWriter("csv","CSV", {select:"text/csv"}, "Displays SPARQL result as CSV", onsuccess, onfailure);
@@ -46730,19 +46729,19 @@ squebi.run( function($extension,$http,SQUEBI){
             $scope.image = null;
             $rootScope.loader = true;
 
-            $scope.template = SQUEBI.app + '/squebi/template/rdfdot.html';
+            $scope.template = SQUEBI.template + '/rdfdot.html';
 
             getImage(data, $scope, $rootScope);
 
         } else {
-            $scope.template = SQUEBI.app + '/squebi/template/basic.html';
+            $scope.template = SQUEBI.template + '/basic.html';
             $rootScope.alerts.push({type:"warning",msg:"Only Construct and Describe queries allowed"});
         }
 
     }
 
     var onfailure = function($scope,data,$rootScope) {
-        $scope.template = SQUEBI.app + '/squebi/template/basic.html';
+        $scope.template = SQUEBI.template + '/basic.html';
     }
 
     var writer = $extension.createResultWriter("rdfdot","RDF.dot", "xml", "Displays SPARQL Construct query as graph image", onsuccess, onfailure);
@@ -46855,7 +46854,7 @@ squebi.run( function($extension,SQUEBI,$timeout){
                 $scope.closeVideo = function() {
                     $scope.singlevideo = false;
                 }
-                $scope.template = SQUEBI.app + '/squebi/template/media.html';
+                $scope.template = SQUEBI.template + '/media.html';
             } catch(error) {
                 $rootScope.alerts.push({type:"danger",msg:error.message});
             }
@@ -46930,7 +46929,8 @@ require([
 
         var SQUEBI = window.SQUEBI != undefined ? window.SQUEBI : {};
 
-        SQUEBI.app = SQUEBI.app || ".";
+        SQUEBI.image = SQUEBI.image || "squebi/img";
+        SQUEBI.template = SQUEBI.template || "squebi/template";
         SQUEBI.container = SQUEBI.container || "#squebi";
         SQUEBI.appLoader = SQUEBI.appLoader || "#appLoader";
 
@@ -46952,9 +46952,9 @@ require([
                 {"name":"List all books","value":"SELECT ?book WHERE {?book a <http://schema.org/Book>}","type":"browse"}
             ],
             "hints": [
-                {"container":"samples","content":"<img width='300px' src='" + SQUEBI.app + "/squebi/img/hint1.png'>","position":2,"dimension":{"width":100,"height":100},"css":"margin-top:-5px;margin-left:-10px"},
-                {"container":"query-container","content":"<img width='300px' src='" + SQUEBI.app + "/squebi/img/hint3.png'>","dimension":{"width":100,"height":100},"css":"margin-top:120px;margin-left:-210px"},
-                {"container":"writers","content":"<img width='370px' src='" + SQUEBI.app + "/squebi/img/hint2.png'>","dimension":{"width":100,"height":100},"css":"margin-top:-30px;margin-left:-400px","position":2}
+                {"container":"samples","content":"<img width='300px' src='" + SQUEBI.image + "/hint1.png'>","position":2,"dimension":{"width":100,"height":100},"css":"margin-top:-5px;margin-left:-10px"},
+                {"container":"query-container","content":"<img width='300px' src='" + SQUEBI.image + "/hint3.png'>","dimension":{"width":100,"height":100},"css":"margin-top:120px;margin-left:-210px"},
+                {"container":"writers","content":"<img width='370px' src='" + SQUEBI.image + "/hint2.png'>","dimension":{"width":100,"height":100},"css":"margin-top:-30px;margin-left:-400px","position":2}
             ],
             "namespaces": {
                 "http://www.w3.org/2000/01/rdf-schema#":"rdfs",
@@ -46970,7 +46970,8 @@ require([
                 "404": "The service was not found or requires payment. Check your path and key in configuration.",
                 "500": "The query did not work. Maybe you little SPARQL mistake... :)"
             },
-            "writers":["browse","xml","json","csv","piechart","rdfdot"]
+            "writers":["browse","xml","json","csv","piechart","rdfdot"],
+            "downloadEnabled":true
         }
 
         jQuery.extend(defaultConfig, SQUEBI);
