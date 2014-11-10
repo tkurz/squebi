@@ -75,7 +75,7 @@ squebi.run(['$extension','SQUEBI', function($extension,SQUEBI) {
 
             $scope.getDisplayName = getDisplayName;
 
-            $scope.transparent = SQUEBI.home + '/image/transparent.gif';
+            $scope.transparent = SQUEBI.home + '/img/transparent.gif';
 
             $scope.headers = data.data.head.vars;
             $scope.bindings = data.data.results.bindings;
