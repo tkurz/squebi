@@ -4,7 +4,7 @@
 /**
  * RDF Dot Writer
  */
-squebi.run( function($extension,$http,SQUEBI){
+squebi.run( ['$extension','$http','SQUEBI','$log', function($extension,$http,SQUEBI,$log){
 
     function getImage(data, scope, rootScope) {
         $http({
@@ -19,7 +19,11 @@ squebi.run( function($extension,$http,SQUEBI){
             }).
             error(function(data, status, headers, config) {
                 rootScope.loader = false;
-                rootScope.alerts.push({type:"error",msg:"Could not render image"});
+                if(status==404) {
+                    rootScope.alerts.push({type:"danger",msg:"No response from server. Server down or no internet connection"});
+                } else {
+                    rootScope.alerts.push({type:"warning",msg:"Could not render image"});
+                }
             });
     }
 
@@ -46,4 +50,4 @@ squebi.run( function($extension,$http,SQUEBI){
 
     var writer = $extension.createResultWriter("rdfdot","RDF.dot", "xml", "Displays SPARQL Construct query as graph image", onsuccess, onfailure);
     writer.position = 6;
-});
+}]);
