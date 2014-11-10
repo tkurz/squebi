@@ -46487,7 +46487,7 @@ define("_squebi", function(){});
 /**
  * Browsable
  */
-squebi.run( function($extension,SQUEBI) {
+squebi.run(['$extension','$http','SQUEBI', function($extension,SQUEBI) {
 
     var config = {
         showFlags : true
@@ -46561,6 +46561,8 @@ squebi.run( function($extension,SQUEBI) {
 
             $scope.getDisplayName = getDisplayName;
 
+            $scope.transparent = SQUEBI.image + '/transparent.gif';
+
             $scope.headers = data.data.head.vars;
             $scope.bindings = data.data.results.bindings;
 
@@ -46578,13 +46580,13 @@ squebi.run( function($extension,SQUEBI) {
     var writer = $extension.createResultWriter("browse","Browse", "json", "Displays browsable SPARQL result", onsuccess);
     writer.position = 1;
     $extension.selectResultWriter(writer);
-});
+}]);
 define("squebiBrowse", function(){});
 
 /**
  * JSON Writer
  */
-squebi.run( function($extension,SQUEBI){
+squebi.run(['$extension','$http','SQUEBI', function($extension,SQUEBI){
 
     function buildLink(query) {
         var query = SQUEBI.selectService + "?query=" + encodeURIComponent(query) + "&out=json";
@@ -46617,7 +46619,7 @@ squebi.run( function($extension,SQUEBI){
 
     var writer = $extension.createResultWriter("json","JSON", "json", "Displays SPARQL result as JSON", onsuccess, onfailure);
     writer.position = 3;
-});
+}]);
 define("squebiJson", function(){});
 
 /**
@@ -46662,7 +46664,7 @@ define("squebiXml", function(){});
 /**
  * CSV Writer
  */
-squebi.run( function($extension,SQUEBI){
+squebi.run( ['$extension','$http','SQUEBI', function($extension,SQUEBI){
 
     function buildLink(query) {
         var query = SQUEBI.selectService + "?query=" + encodeURIComponent(query) + "&out=csv";
@@ -46695,7 +46697,7 @@ squebi.run( function($extension,SQUEBI){
 
     var writer = $extension.createResultWriter("csv","CSV", {select:"text/csv"}, "Displays SPARQL result as CSV", onsuccess, onfailure);
     writer.position = 4;
-});
+}]);
 define("squebiCsv", function(){});
 
 /**
@@ -46704,7 +46706,7 @@ define("squebiCsv", function(){});
 /**
  * RDF Dot Writer
  */
-squebi.run( function($extension,$http,SQUEBI){
+squebi.run( ['$extension','$http','SQUEBI','$log', function($extension,$http,SQUEBI,$log){
 
     function getImage(data, scope, rootScope) {
         $http({
@@ -46719,7 +46721,11 @@ squebi.run( function($extension,$http,SQUEBI){
             }).
             error(function(data, status, headers, config) {
                 rootScope.loader = false;
-                rootScope.alerts.push({type:"error",msg:"Could not render image"});
+                if(status==404) {
+                    rootScope.alerts.push({type:"danger",msg:"No response from server. Server down or no internet connection"});
+                } else {
+                    rootScope.alerts.push({type:"warning",msg:"Could not render image"});
+                }
             });
     }
 
@@ -46746,21 +46752,21 @@ squebi.run( function($extension,$http,SQUEBI){
 
     var writer = $extension.createResultWriter("rdfdot","RDF.dot", "xml", "Displays SPARQL Construct query as graph image", onsuccess, onfailure);
     writer.position = 6;
-});
+}]);
 define("squebiRdfdot", function(){});
 
 /**
  * Media Writer
  */
-squebi.config(function($sceDelegateProvider) {
+squebi.config(['$sceDelegateProvider', function($sceDelegateProvider) {
     $sceDelegateProvider.resourceUrlWhitelist([
         // Allow same origin resource loads.
         'self',
         // Allow loading from our assets domain.  Notice the difference between * and **.
         'http://localhost:8080/DATA/**']);
-});
+}]);
 
-squebi.run( function($extension,SQUEBI,$timeout){
+squebi.run(['$extension','$http','SQUEBI', function($extension,SQUEBI,$timeout){
 
     function buildLink(query) {
         return SQUEBI.serviceURL.select + "?query=" + encodeURIComponent(query) + "&output=json";
@@ -46865,7 +46871,7 @@ squebi.run( function($extension,SQUEBI,$timeout){
 
     var writer = $extension.createResultWriter("media","Media", "json", "Displays result as Media Asset List", onsuccess);
     writer.position = 6;
-});
+}]);
 define("squebiMedia", function(){});
 
 requirejs.config({

@@ -2,7 +2,7 @@
  * PIE Chart Writer
  */
 
-squebi.directive('piechart', function ($location) {
+squebi.directive('piechart', ['$location',function ($location) {
 
     var query = "SELECT DISTINCT ?property ?hasValue ?isValueOf WHERE {\n  { ###URI### ?property ?hasValue }\nUNION\n  { ?isValueOf ?property ###URI### }\n} ORDER BY (!BOUND(?hasValue)) ?property ?hasValue ?isValueOf";
 
@@ -37,9 +37,9 @@ squebi.directive('piechart', function ($location) {
             });
         }
     }
-})
+}]);
 
-squebi.run( function($extension,SQUEBI) {
+squebi.run(['$extension','SQUEBI',function($extension,SQUEBI) {
 
     function transformData(d) {
 
@@ -107,4 +107,4 @@ squebi.run( function($extension,SQUEBI) {
 
     var writer = $extension.createResultWriter("piechart","Piechart", "json", "Displays SPARQL result as Pie Chart", onsuccess, onfailure);
     writer.position = 5;
-});
+}]);

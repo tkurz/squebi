@@ -1,15 +1,15 @@
 /**
  * Media Writer
  */
-squebi.config(function($sceDelegateProvider) {
+squebi.config(['$sceDelegateProvider', function($sceDelegateProvider) {
     $sceDelegateProvider.resourceUrlWhitelist([
         // Allow same origin resource loads.
         'self',
         // Allow loading from our assets domain.  Notice the difference between * and **.
         'http://localhost:8080/DATA/**']);
-});
+}]);
 
-squebi.run( function($extension,SQUEBI,$timeout){
+squebi.run(['$extension','$http','SQUEBI', function($extension,SQUEBI,$timeout){
 
     function buildLink(query) {
         return SQUEBI.serviceURL.select + "?query=" + encodeURIComponent(query) + "&output=json";
@@ -114,4 +114,4 @@ squebi.run( function($extension,SQUEBI,$timeout){
 
     var writer = $extension.createResultWriter("media","Media", "json", "Displays result as Media Asset List", onsuccess);
     writer.position = 6;
-});
+}]);

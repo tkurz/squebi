@@ -1,7 +1,7 @@
 /**
  * CSV Writer
  */
-squebi.run( function($extension,SQUEBI){
+squebi.run( ['$extension','$http','SQUEBI', function($extension,SQUEBI){
 
     function buildLink(query) {
         var query = SQUEBI.selectService + "?query=" + encodeURIComponent(query) + "&out=csv";
@@ -34,4 +34,4 @@ squebi.run( function($extension,SQUEBI){
 
     var writer = $extension.createResultWriter("csv","CSV", {select:"text/csv"}, "Displays SPARQL result as CSV", onsuccess, onfailure);
     writer.position = 4;
-});
+}]);

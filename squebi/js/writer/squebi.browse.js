@@ -1,7 +1,7 @@
 /**
  * Browsable
  */
-squebi.run( function($extension,SQUEBI) {
+squebi.run(['$extension','$http','SQUEBI', function($extension,SQUEBI) {
 
     var config = {
         showFlags : true
@@ -94,4 +94,4 @@ squebi.run( function($extension,SQUEBI) {
     var writer = $extension.createResultWriter("browse","Browse", "json", "Displays browsable SPARQL result", onsuccess);
     writer.position = 1;
     $extension.selectResultWriter(writer);
-});
+}]);
