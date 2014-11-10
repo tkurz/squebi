@@ -103,7 +103,7 @@ squebi.run(['$extension','SQUEBI','$timeout', function($extension,SQUEBI,$timeou
                 $scope.closeVideo = function() {
                     $scope.singlevideo = false;
                 }
-                $scope.template = SQUEBI.template + '/media.html';
+                $scope.template = SQUEBI.home + '/template/media.html';
             } catch(error) {
                 $rootScope.alerts.push({type:"danger",msg:error.message});
             }

@@ -59,8 +59,7 @@ require([
 
         var SQUEBI = window.SQUEBI != undefined ? window.SQUEBI : {};
 
-        SQUEBI.image = SQUEBI.image || "squebi/img";
-        SQUEBI.template = SQUEBI.template || "squebi/template";
+        SQUEBI.home = SQUEBI.home || "squebi";
         SQUEBI.container = SQUEBI.container || "#squebi";
         SQUEBI.appLoader = SQUEBI.appLoader || "#appLoader";
 
@@ -82,9 +81,9 @@ require([
                 {"name":"List all books","value":"SELECT ?book WHERE {?book a <http://schema.org/Book>}","type":"browse"}
             ],
             "hints": [
-                {"container":"samples","content":"<img width='300px' src='" + SQUEBI.image + "/hint1.png'>","position":2,"dimension":{"width":100,"height":100},"css":"margin-top:-5px;margin-left:-10px"},
-                {"container":"query-container","content":"<img width='300px' src='" + SQUEBI.image + "/hint3.png'>","dimension":{"width":100,"height":100},"css":"margin-top:120px;margin-left:-210px"},
-                {"container":"writers","content":"<img width='370px' src='" + SQUEBI.image + "/hint2.png'>","dimension":{"width":100,"height":100},"css":"margin-top:-30px;margin-left:-400px","position":2}
+                {"container":"samples","content":"<img width='300px' src='" + SQUEBI.home + "/img/hint1.png'>","position":2,"dimension":{"width":100,"height":100},"css":"margin-top:-5px;margin-left:-10px"},
+                {"container":"query-container","content":"<img width='300px' src='" + SQUEBI.home + "/img/hint3.png'>","dimension":{"width":100,"height":100},"css":"margin-top:120px;margin-left:-210px"},
+                {"container":"writers","content":"<img width='370px' src='" + SQUEBI.home + "/img/hint2.png'>","dimension":{"width":100,"height":100},"css":"margin-top:-30px;margin-left:-400px","position":2}
             ],
             "namespaces": {
                 "http://www.w3.org/2000/01/rdf-schema#":"rdfs",

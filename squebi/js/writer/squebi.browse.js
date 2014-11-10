@@ -55,17 +55,17 @@ squebi.run(['$extension','SQUEBI', function($extension,SQUEBI) {
 
         if($.inArray(data.type, ["drop", "insert", "delete"]) != -1) {
 
-            $scope.template = SQUEBI.template + '/basic.html';
+            $scope.template = SQUEBI.home + '/template/basic.html';
             $rootScope.alerts.push(data.data);
 
         } else if(data.type == 'construct') {
-            $scope.template = SQUEBI.template + '/basic.html';
+            $scope.template = SQUEBI.home + '/template/basic.html';
             $rootScope.alerts.push({type:"warning",msg:"Data Browser does not support 'Construct' queries. Use a different result writer!"});
         } else if(data.type == 'describe') {
-            $scope.template = SQUEBI.template + '/basic.html';
+            $scope.template = SQUEBI.home + '/template/basic.html';
             $rootScope.alerts.push({type:"warning",msg:"Data Browser does not support 'Describe' queries. Use a different result writer!"});
         } else if(data.type == 'ask') {
-            $scope.template = SQUEBI.template + '/basic.html';
+            $scope.template = SQUEBI.home + '/template/basic.html';
             if(data.data.boolean) {
                 $rootScope.alerts.push({type:"success",msg:"The answer is YES."});
             } else {
@@ -75,14 +75,14 @@ squebi.run(['$extension','SQUEBI', function($extension,SQUEBI) {
 
             $scope.getDisplayName = getDisplayName;
 
-            $scope.transparent = SQUEBI.image + '/transparent.gif';
+            $scope.transparent = SQUEBI.home + '/image/transparent.gif';
 
             $scope.headers = data.data.head.vars;
             $scope.bindings = data.data.results.bindings;
 
             $scope.showFlags = config.showFlags;
 
-            $scope.template = SQUEBI.template + '/browse.html';
+            $scope.template = SQUEBI.home + '/template/browse.html';
 
             $scope.selectURI = function(uri,name) {
                 var query = getQuery(uri,name);

@@ -59,9 +59,7 @@
                 <directory>${project.basedir}</directory>
                 <targetPath>${destDir}</targetPath>
                 <includes>
-                    <include>dist/squebi.js</include>
-                    <include>dist/squebi.css</include>
-                    <include>dist/index.html</include>
+                    <include>dist/**</include>
                 </includes>
             </resource>
         </resources>

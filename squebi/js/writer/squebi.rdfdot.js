@@ -33,19 +33,19 @@ squebi.run( ['$extension','$http','SQUEBI','$log', function($extension,$http,SQU
             $scope.image = null;
             $rootScope.loader = true;
 
-            $scope.template = SQUEBI.template + '/rdfdot.html';
+            $scope.template = SQUEBI.home + '/template/rdfdot.html';
 
             getImage(data, $scope, $rootScope);
 
         } else {
-            $scope.template = SQUEBI.template + '/basic.html';
+            $scope.template = SQUEBI.home + '/template/basic.html';
             $rootScope.alerts.push({type:"warning",msg:"Only Construct and Describe queries allowed"});
         }
 
     }
 
     var onfailure = function($scope,data,$rootScope) {
-        $scope.template = SQUEBI.template + '/basic.html';
+        $scope.template = SQUEBI.home + '/template/basic.html';
     }
 
     var writer = $extension.createResultWriter("rdfdot","RDF.dot", "xml", "Displays SPARQL Construct query as graph image", onsuccess, onfailure);

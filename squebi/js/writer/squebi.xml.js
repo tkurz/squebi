@@ -16,20 +16,20 @@ squebi.run( ['$extension','SQUEBI',function($extension,SQUEBI){
     var onsuccess = function($scope,data,$rootScope) {
 
         if($.inArray(data.type, ["drop", "insert","delete"]) != -1) {
-            $scope.template = SQUEBI.template + '/basic.html';
+            $scope.template = SQUEBI.home + '/template/basic.html';
             $rootScope.alerts.push(data.data);
 
         } else {
             $scope.data = data.data;
             $scope.href = buildLink(data.query);
 
-            $scope.template = SQUEBI.template + '/data.html';
+            $scope.template = SQUEBI.home + '/template/data.html';
         }
 
     }
 
     var onfailure = function($scope,data,$rootScope) {
-        $scope.template = SQUEBI.template + '/basic.html';
+        $scope.template = SQUEBI.home + '/template/basic.html';
     }
 
     var writer = $extension.createResultWriter("xml","XML", "xml", "Displays SPARQL result as XML", onsuccess, onfailure);

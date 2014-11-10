@@ -72,7 +72,7 @@ squebi.run(['$extension','SQUEBI',function($extension,SQUEBI) {
 
     var onsuccess = function($scope,data,$rootScope) {
 
-        $scope.template = SQUEBI.template + '/basic.html';
+        $scope.template = SQUEBI.home + '/template/basic.html';
 
         if(data.type != 'select') {
             $rootScope.alerts.push({type:"warning",msg: "Query type is not supported!"});
@@ -93,7 +93,7 @@ squebi.run(['$extension','SQUEBI',function($extension,SQUEBI) {
                     }
                 })*/
 
-                $scope.template = SQUEBI.template + '/pie.html';
+                $scope.template = SQUEBI.home + '/template/pie.html';
             }
         } catch(e) {
             $rootScope.alerts.push({type:"danger",msg: e.message});
@@ -102,7 +102,7 @@ squebi.run(['$extension','SQUEBI',function($extension,SQUEBI) {
     }
 
     var onfailure = function($scope,data,$rootScope) {
-        $scope.template = SQUEBI.template + '/basic.html';
+        $scope.template = SQUEBI.home + '/template/basic.html';
     }
 
     var writer = $extension.createResultWriter("piechart","Piechart", "json", "Displays SPARQL result as Pie Chart", onsuccess, onfailure);
