@@ -1,6 +1,6 @@
 <html>
     <head>
-        <!-- Dependencies -->
+        <!-- BASIC CONFIG -->
         <script type="text/javascript">
             var SQUEBI = {
                 configurable : true,
@@ -8,22 +8,29 @@
                 updateService : "https://api.redlink.io/1.0-BETA/data/squebi/sparql/update",
                 queryParams : {
                     key : "E0TwfqjW3HfXdftAjmst0ElLa3fkY8TPa444e111"
+                },
+                onload : function(app) {
+
+                    /*var interval = setInterval(function(){
+                        console.log(app.getQuery());
+                    },1000);*/
+                    //console.log(SQUEBI.getApp());
                 }
             };
         </script>
 
         <!-- PRODUCTION CONFIGURATION -->
-
+        <!--
         <script type="text/javascript">
             SQUEBI.template = "dist/template";
             SQUEBI.image = "dist/img";
         </script>
         <script data-main="dist/squebi" src="bower_components/requirejs/require.js"></script>
         <link href="dist/squebi.css" rel="stylesheet" type="text/css">
-
+        -->
 
         <!-- DEVELOP CONFIGURATION -->
-        <!--
+
         <script data-main="main" src="bower_components/requirejs/require.js"></script>
         <link href="squebi/css/flags.css" rel="stylesheet" type="text/css">
         <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
@@ -31,7 +38,7 @@
         <link href="bower_components/codemirror/theme/neat.css" rel="stylesheet" type="text/css">
         <link href="bower_components/codemirror/addon/hint/show-hint.css" rel="stylesheet" type="text/css">
         <link href="squebi/css/style.css" rel="stylesheet" type="text/css">
-        -->
+
         <style>
             #redlink:hover {
                 text-decoration: none;

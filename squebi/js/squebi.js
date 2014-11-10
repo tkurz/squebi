@@ -622,5 +622,20 @@ squebi.run(['$rootScope','localStorageService', 'SQUEBI', function($rootScope, l
     if(localStorageService.get('selectService')) SQUEBI.selectService = localStorageService.get('selectService');
     if(localStorageService.get('queryParams')) SQUEBI.queryParams = localStorageService.get('queryParams');
     $rootScope.downloadEnabled = SQUEBI.downloadEnabled;
+
+    var app = {
+        getQuery : function() {
+            return "TODO";
+        }
+    }
+
+    window.SQUEBI.getApp = function() {
+        return app;
+    }
+
+    if(window.SQUEBI.onload && window.SQUEBI.onload instanceof Function) {
+        window.SQUEBI.onload(app);
+    }
+
 }]);
 
