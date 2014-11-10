@@ -1,7 +1,7 @@
 /**
  * Browsable
  */
-squebi.run(['$extension','$http','SQUEBI', function($extension,SQUEBI) {
+squebi.run(['$extension','SQUEBI', function($extension,SQUEBI) {
 
     var config = {
         showFlags : true

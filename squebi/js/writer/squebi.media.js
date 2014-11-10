@@ -9,7 +9,7 @@ squebi.config(['$sceDelegateProvider', function($sceDelegateProvider) {
         'http://localhost:8080/DATA/**']);
 }]);
 
-squebi.run(['$extension','$http','SQUEBI', function($extension,SQUEBI,$timeout){
+squebi.run(['$extension','SQUEBI','$timeout', function($extension,SQUEBI,$timeout){
 
     function buildLink(query) {
         return SQUEBI.serviceURL.select + "?query=" + encodeURIComponent(query) + "&output=json";

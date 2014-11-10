@@ -1,7 +1,7 @@
 /**
  * JSON Writer
  */
-squebi.run(['$extension','$http','SQUEBI', function($extension,SQUEBI){
+squebi.run(['$extension','SQUEBI', function($extension,SQUEBI){
 
     function buildLink(query) {
         var query = SQUEBI.selectService + "?query=" + encodeURIComponent(query) + "&out=json";

@@ -1,7 +1,7 @@
 /**
  * XML Writer
  */
-squebi.run( function($extension,SQUEBI){
+squebi.run( ['$extension','SQUEBI',function($extension,SQUEBI){
 
     function buildLink(query) {
         var query = SQUEBI.selectService + "?query=" + encodeURIComponent(query) + "&out=xml";
@@ -34,4 +34,4 @@ squebi.run( function($extension,SQUEBI){
 
     var writer = $extension.createResultWriter("xml","XML", "xml", "Displays SPARQL result as XML", onsuccess, onfailure);
     writer.position = 2;
-});
+}]);
