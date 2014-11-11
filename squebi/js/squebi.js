@@ -358,6 +358,7 @@ squebi.controller( 'QueryCtrl', [ 'SQUEBI', '$rootScope', '$sparql', '$http', '$
     //codemirror
     $scope.editorOptions = {
         lineWrapping : true,
+        viewportMargin: 2000,
         lineNumbers: true,
         mode: 'sparql',
         theme: 'mdn-like sparql-mm',
@@ -617,7 +618,7 @@ squebi.controller( 'ConfigurationCtrl', [ '$scope', '$modal', 'SQUEBI', 'localSt
     };
 }]);
 
-squebi.run(['$rootScope','localStorageService', 'SQUEBI', function($rootScope, localStorageService, SQUEBI) {
+squebi.run(['$rootScope','localStorageService', 'SQUEBI', '$location', function($rootScope, localStorageService, SQUEBI, $location) {
     if(localStorageService.get('updateService')) SQUEBI.updateService = localStorageService.get('updateService');
     if(localStorageService.get('selectService')) SQUEBI.selectService = localStorageService.get('selectService');
     if(localStorageService.get('queryParams')) SQUEBI.queryParams = localStorageService.get('queryParams');
@@ -636,6 +637,8 @@ squebi.run(['$rootScope','localStorageService', 'SQUEBI', function($rootScope, l
     if(window.SQUEBI.onload && window.SQUEBI.onload instanceof Function) {
         window.SQUEBI.onload(app);
     }
+
+    $rootScope.githubPages = $location.host == 'tkurz.github.io';
 
 }]);
 
