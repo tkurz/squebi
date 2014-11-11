@@ -208,8 +208,11 @@ li.menuitem a {
   position: absolute;
   z-index: 999; }
 
-.lang {
+.literal .lang {
   color: #0A82C7; }
+
+.literal .type {
+  color: #40b5c7; }
 
 .modal-table {
   width: 100%; }

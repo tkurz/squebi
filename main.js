@@ -93,7 +93,8 @@ require([
                 "http://xmlns.com/foaf/0.1/":"foaf",
                 "http://purl.org/dc/terms/":"dct",
                 "http://www.w3.org/ns/ma-ont#":"ma",
-                "http://purl.org/dc/elements/1.1/":"dc"
+                "http://purl.org/dc/elements/1.1/":"dc",
+                "http://www.w3.org/2001/XMLSchema#":"xsd"
             },
             "updateAllowed": true,
             "responseMessage": {

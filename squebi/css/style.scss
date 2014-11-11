@@ -11,6 +11,7 @@ $color7: #aaa;
 $color8: #e5e5e5;
 $color9: white;
 $color10: #fa3300;
+$color11: #40b5c7;
 
 $width: 830px;
 
@@ -263,8 +264,12 @@ li.menuitem {
   z-index: 999;
 }
 
-.lang {
+.literal .lang {
   color: $color3;
+}
+
+.literal .type {
+  color: $color11;
 }
 
 .modal-table {

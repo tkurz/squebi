@@ -4,7 +4,7 @@
 squebi.run(['$extension','SQUEBI','$anchorScroll', function($extension,SQUEBI,$anchorScroll) {
 
     var config = {
-        showFlags : true
+        showFlags : false
     }
 
     if(SQUEBI.browse) jQuery.extend(config, SQUEBI.browse);
@@ -49,6 +49,16 @@ squebi.run(['$extension','SQUEBI','$anchorScroll', function($extension,SQUEBI,$a
         } else {
             return uri;
         }
+    }
+
+    var getDatatypeForBinding = function(binding) {
+        if(binding.datatype) {
+            return getDisplayName(binding.datatype);
+        }
+    }
+
+    var getTitleForBinding = function(binding) {
+        return binding.value + (binding['xml:lang'] ? '@'+binding['xml:lang'] : '') + (binding.datatype ? '^^'+getDatatypeForBinding(binding) : "");
     }
 
     var bindings;
@@ -116,6 +126,10 @@ squebi.run(['$extension','SQUEBI','$anchorScroll', function($extension,SQUEBI,$a
                 offset = offset+SQUEBI.pageSize < $scope.resultSize ? offset+SQUEBI.pageSize : offset;
                 drawData($scope);
             }
+
+            $scope.getTitleForBinding = getTitleForBinding;
+
+            $scope.getDatatypeForBinding = getDatatypeForBinding;
 
             $scope.resultSize = bindings.length;
 
