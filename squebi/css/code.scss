@@ -36,8 +36,10 @@
 }
 
 .CodeMirror-wrap .CodeMirror-scroll {
-  overflow: hidden;
+  overflow-y: hidden;
   overflow-x: auto;
+  height: auto;
+  min-height: 150px;
 }
 
 .cm-s-mdn-like .CodeMirror-linenumber {
