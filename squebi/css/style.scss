@@ -83,7 +83,7 @@ body {
       border-bottom: 1px solid $color8;
       @include box-shadow(3px 3px 10px 1px $color7);
     }
-    .btn {
+    .btn-run {
       margin-top: 20px;
       padding: 10px 20px;
       font-size: 21px;
@@ -363,6 +363,16 @@ li.menuitem {
 
 .table-browse {
   background-color: white;
+}
+
+.paging {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.paging div {
+  display: inline;
+  margin: 5px 30px;
+  font-size: 18px;
 }
 
 @import 'code';

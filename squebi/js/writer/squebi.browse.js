@@ -1,7 +1,7 @@
 /**
  * Browsable
  */
-squebi.run(['$extension','SQUEBI', function($extension,SQUEBI) {
+squebi.run(['$extension','SQUEBI','$anchorScroll', function($extension,SQUEBI,$anchorScroll) {
 
     var config = {
         showFlags : true
@@ -51,6 +51,25 @@ squebi.run(['$extension','SQUEBI', function($extension,SQUEBI) {
         }
     }
 
+    var bindings;
+    var offset;
+
+    function drawData($scope) {
+
+        var showBindings = bindings.slice(offset,offset+SQUEBI.pageSize);
+
+        $scope.firstItem = offset+1;
+        $scope.lastItem = offset+showBindings.length;
+
+        $scope.showPrev = offset > 0;
+        $scope.showNext = offset + showBindings.length < bindings.length;
+
+        //$anchorScroll();
+
+        $scope.bindings = showBindings;
+        $scope.template = SQUEBI.home + '/template/browse.html';
+    }
+
     var onsuccess = function($scope,data,$rootScope) {
 
         if($.inArray(data.type, ["drop", "insert", "delete"]) != -1) {
@@ -73,21 +92,36 @@ squebi.run(['$extension','SQUEBI', function($extension,SQUEBI) {
             }
         } else {
 
+
             $scope.getDisplayName = getDisplayName;
 
             $scope.transparent = SQUEBI.home + '/img/transparent.gif';
 
             $scope.headers = data.data.head.vars;
-            $scope.bindings = data.data.results.bindings;
+            bindings = data.data.results.bindings;
 
             $scope.showFlags = config.showFlags;
-
-            $scope.template = SQUEBI.home + '/template/browse.html';
 
             $scope.selectURI = function(uri,name) {
                 var query = getQuery(uri,name);
                 $rootScope.$emit('setQuery',query);
             }
+
+            $scope.prev = function() {
+                offset = Math.max(0, offset-SQUEBI.pageSize); console.log(offset);
+                drawData($scope);
+            }
+
+            $scope.next = function() {
+                offset = offset+SQUEBI.pageSize < $scope.resultSize ? offset+SQUEBI.pageSize : offset; console.log(offset);
+                drawData($scope);
+            }
+
+            $scope.resultSize = bindings.length;
+
+            offset = 0;
+
+            drawData($scope);
         }
     }
 

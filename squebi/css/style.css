@@ -49,7 +49,7 @@ body {
       -moz-box-shadow: 3px 3px 10px 1px #aaa;
       -webkit-box-shadow: 3px 3px 10px 1px #aaa;
       box-shadow: 3px 3px 10px 1px #aaa; }
-    .container .btn {
+    .container .btn-run {
       margin-top: 20px;
       padding: 10px 20px;
       font-size: 21px; } }
@@ -302,6 +302,15 @@ li.menuitem a {
 
 .table-browse {
   background-color: white; }
+
+.paging {
+  text-align: center;
+  margin-bottom: 20px; }
+
+.paging div {
+  display: inline;
+  margin: 5px 30px;
+  font-size: 18px; }
 
 /* CODE MIRROR */
 .CodeMirror {
