@@ -1,26 +1,26 @@
 requirejs.config({
     "paths": {
-        "async" : "bower_components/requirejs-plugins/src/async",
-        "propertyParser" : "bower_components/requirejs-plugins/src/propertyParser",
+        //"async" : "bower_components/requirejs-plugins/src/async",
+        //"propertyParser" : "bower_components/requirejs-plugins/src/propertyParser",
         //goog : "bower_components/requirejs-plugins/src/goog",
-        "jquery" : "bower_components/jquery/dist/jquery",
-        "angular" : "bower_components/angular/angular",
-        "angularLocalStorage" : "bower_components/angular-local-storage/angular-local-storage",
-        "_bootstrap" : "bower_components/bootstrap/dist/js/bootstrap",
-        "bootstrapUI" : "bower_components/angular-bootstrap/ui-bootstrap",
-        "uiBootstrapTpls": "bower_components/angular-bootstrap/ui-bootstrap-tpls",
+        "jquery" : "bower_components/jquery/dist/jquery.min",
+        "angular" : "bower_components/angular/angular.min",
+        "angularLocalStorage" : "bower_components/angular-local-storage/angular-local-storage.min",
+        "_bootstrap" : "bower_components/bootstrap/dist/js/bootstrap.min",
+        "bootstrapUI" : "bower_components/angular-bootstrap/ui-bootstrap.min",
+        "uiBootstrapTpls": "bower_components/angular-bootstrap/ui-bootstrap-tpls.min",
         "_codemirror" : "bower_components/codemirror/lib/codemirror",
         "codemirrorSparql" : "bower_components/codemirror/mode/sparql/sparql",
-        "codemirrorUI" : "bower_components/angular-ui-codemirror/ui-codemirror",
+        "codemirrorUI" : "bower_components/angular-ui-codemirror/ui-codemirror.min",
         "codemirrorHint" : "bower_components/codemirror/addon/hint/show-hint",
         "_squebi" : "squebi/js/squebi",
         "squebiBrowse" : "squebi/js/writer/squebi.browse",
         "squebiJson" : "squebi/js/writer/squebi.json",
         "squebiXml" : "squebi/js/writer/squebi.xml",
         "squebiCsv" : "squebi/js/writer/squebi.csv",
-        "squebiPie": "squebi/js/writer/squebi.pie",
+        //"squebiPie": "squebi/js/writer/squebi.pie",
         "squebiRdfdot": "squebi/js/writer/squebi.rdfdot",
-        "squebiMedia" : "squebi/js/writer/squebi.media"
+        //"squebiMedia" : "squebi/js/writer/squebi.media"
         //rdfstoreJs: "bower_components/rdfstore-js/dist/browser/rdf_store"
     },
     "shim": {
@@ -38,9 +38,9 @@ requirejs.config({
         'squebiJson' : ['_squebi'],
         'squebiXml' : ['_squebi'],
         'squebiCsv' : ['_squebi'],
-        'squebiRdfdot' : ['_squebi'],
-        'squebiPie' : ['_squebi'],
-        'squebiMedia' : ['_squebi']
+        'squebiRdfdot' : ['_squebi']
+        //'squebiPie' : ['_squebi'],
+        //'squebiMedia' : ['_squebi']
     }
 });
 
@@ -49,8 +49,8 @@ require([
     "squebiJson",
     "squebiXml",
     "squebiCsv",
-    "squebiRdfdot",
-    "squebiMedia"
+    "squebiRdfdot"
+    //"squebiMedia"
     //'goog!visualization,1,packages:[corechart]',
     //"squebiPie"
 ], function() {
