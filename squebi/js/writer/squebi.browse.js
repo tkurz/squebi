@@ -58,7 +58,7 @@ squebi.run(['$extension','SQUEBI','$anchorScroll', function($extension,SQUEBI,$a
     }
 
     var getTitleForBinding = function(binding) {
-        return binding.value + (binding['xml:lang'] ? '@'+binding['xml:lang'] : '') + (binding.datatype ? '^^'+getDatatypeForBinding(binding) : "");
+        return binding.value + (binding['xml:lang'] ? '@'+binding['xml:lang'] : '') + (binding.datatype ? '^^'+bindingdatatype : "");
     }
 
     var bindings;

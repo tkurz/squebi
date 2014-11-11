@@ -13,62 +13,62 @@
         </script>
 
         <!-- PRODUCTION CONFIGURATION -->
-        <!--
-                <script type="text/javascript">
-                    SQUEBI.home = "dist";
-                </script>
-                <script data-main="dist/squebi" src="bower_components/requirejs/require.js"></script>
-                <link href="dist/squebi.css" rel="stylesheet" type="text/css">
-        -->
+
+            <script type="text/javascript">
+                SQUEBI.home = "dist";
+            </script>
+            <script data-main="dist/squebi" src="bower_components/requirejs/require.js"></script>
+            <link href="dist/squebi.css" rel="stylesheet" type="text/css">
+
                 <!-- DEVELOP CONFIGURATION -->
+        <!--
+            <script data-main="main" src="bower_components/requirejs/require.js"></script>
+            <link href="squebi/css/flags.css" rel="stylesheet" type="text/css">
+            <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+            <link href="bower_components/codemirror/lib/codemirror.css" rel="stylesheet" type="text/css">
+            <link href="bower_components/codemirror/theme/neat.css" rel="stylesheet" type="text/css">
+            <link href="bower_components/codemirror/addon/hint/show-hint.css" rel="stylesheet" type="text/css">
+            <link href="squebi/css/style.css" rel="stylesheet" type="text/css">
 
-        <script data-main="main" src="bower_components/requirejs/require.js"></script>
-        <link href="squebi/css/flags.css" rel="stylesheet" type="text/css">
-        <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
-        <link href="bower_components/codemirror/lib/codemirror.css" rel="stylesheet" type="text/css">
-        <link href="bower_components/codemirror/theme/neat.css" rel="stylesheet" type="text/css">
-        <link href="bower_components/codemirror/addon/hint/show-hint.css" rel="stylesheet" type="text/css">
-        <link href="squebi/css/style.css" rel="stylesheet" type="text/css">
+        -->
+                <style>
+                    #redlink:hover {
+                        text-decoration: none;
+                    }
+                </style>
 
-
-        <style>
-            #redlink:hover {
-                text-decoration: none;
-            }
-        </style>
-
-        <script type="text/javascript">
-            /**
-             * Example for accessing current query data
-             */
-            function alertQuery() {
-                alert(SQUEBI.getApp().getQuery());
-            }
-        </script>
-    </head>
-    <body>
-        <div id="appLoader" style="margin-top: 100px; text-align: center;">
-            <img src="squebi/img/ajax-loader-big.gif">
-        </div>
-        <div style="display: none" class="container" id="squebi">
-            <div ng-controller="SampleCtrl" class="header">
-                <div ng-show="showHint">
-                    <div ng-click="showHint = false" class="hint-overlay"></div>
-                    <div class="hint" style="{{h.style}}" ng-repeat="h in hints" ng-bind-html="h.trusted_content"></div>
+                <script type="text/javascript">
+                    /**
+                     * Example for accessing current query data
+                     */
+                    function alertQuery() {
+                        alert(SQUEBI.getApp().getQuery());
+                    }
+                </script>
+            </head>
+            <body>
+                <div id="appLoader" style="margin-top: 100px; text-align: center;">
+                    <img src="squebi/img/ajax-loader-big.gif">
                 </div>
-                <ul class="nav nav-pills pull-right">
-                    <li class="menuitem"><a ng-show="hint" ng-click="showHints()">Hints</a></li>
-                    <li id="samples" class="menuitem dropdown">
-                        <a class="dropdown-toggle">
-                            Samples
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li ng-repeat="sample in samples">
-                                <a ng-click="selectSample(sample)">{{sample.name}}</a>
+                <div style="display: none" class="container" id="squebi">
+                    <div ng-controller="SampleCtrl" class="header">
+                        <div ng-show="showHint">
+                            <div ng-click="showHint = false" class="hint-overlay"></div>
+                            <div class="hint" style="{{h.style}}" ng-repeat="h in hints" ng-bind-html="h.trusted_content"></div>
+                        </div>
+                        <ul class="nav nav-pills pull-right">
+                            <li class="menuitem"><a ng-show="hint" ng-click="showHints()">Hints</a></li>
+                            <li id="samples" class="menuitem dropdown">
+                                <a class="dropdown-toggle">
+                                    Samples
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li ng-repeat="sample in samples">
+                                        <a ng-click="selectSample(sample)">{{sample.name}}</a>
+                                    </li>
+                                </ul>
                             </li>
-                        </ul>
-                    </li>
-                    <!--<li><a href="http://github.com/tkurz/sparql-mm" target="_blank">Repository</a></li>-->
+                            <!--<li><a href="http://github.com/tkurz/sparql-mm" target="_blank">Repository</a></li>-->
                     <li><a href="mailto:thomas.kurz@salzburgresearch.at">Contact</a></li>
                     <li ng-controller="ConfigurationCtrl" >
                         <a ng-show="configurable" style="cursor: pointer" ng-click="open()">Configuration</a>

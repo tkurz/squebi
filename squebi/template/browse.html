@@ -13,7 +13,7 @@
                 <span ng-click="selectURI(binding[name].value,name)">{{getDisplayName(binding[name].value)}}</span>
                 <a class="external-link" href="{{binding[name].value}}" target="_blank"><i class="fa fa-external-link"></i></a>
             </div>
-            <span class="literal" ng-show="binding[name].type == 'literal'">{{binding[name].value}}
+            <span title="{{getTitleForBinding(binding[name])}}" class="literal" ng-show="binding[name].type == 'literal'">{{binding[name].value}}
                 <img ng-src="{{transparent}}" ng-show="binding[name]['xml:lang'] && showFlags" class="flag flag-{{binding[name]['xml:lang']}}">
                 <span class="lang" ng-show="binding[name]['xml:lang'] && !showFlags">@{{binding[name]['xml:lang']}}</span>
                 <span class="type" ng-show="binding[name]['datatype']">^^{{getDatatypeForBinding(binding[name])}}</span>
