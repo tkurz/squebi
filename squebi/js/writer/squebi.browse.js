@@ -52,7 +52,7 @@ squebi.run(['$extension','SQUEBI','$anchorScroll', function($extension,SQUEBI,$a
     }
 
     var getDatatypeForBinding = function(binding) {
-        if(binding.datatype) {
+        if(binding && binding.datatype) {
             return getDisplayName(binding.datatype);
         }
     }
