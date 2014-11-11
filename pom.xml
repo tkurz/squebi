@@ -56,11 +56,8 @@
         </plugins>
         <resources>
             <resource>
-                <directory>${project.basedir}</directory>
+                <directory>${project.basedir}/dist</directory>
                 <targetPath>${destDir}</targetPath>
-                <includes>
-                    <include>dist/**</include>
-                </includes>
             </resource>
         </resources>
     </build>
