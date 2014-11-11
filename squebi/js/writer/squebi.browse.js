@@ -108,12 +108,12 @@ squebi.run(['$extension','SQUEBI','$anchorScroll', function($extension,SQUEBI,$a
             }
 
             $scope.prev = function() {
-                offset = Math.max(0, offset-SQUEBI.pageSize); console.log(offset);
+                offset = Math.max(0, offset-SQUEBI.pageSize);
                 drawData($scope);
             }
 
             $scope.next = function() {
-                offset = offset+SQUEBI.pageSize < $scope.resultSize ? offset+SQUEBI.pageSize : offset; console.log(offset);
+                offset = offset+SQUEBI.pageSize < $scope.resultSize ? offset+SQUEBI.pageSize : offset;
                 drawData($scope);
             }
 

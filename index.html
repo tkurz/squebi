@@ -8,13 +8,6 @@
                 updateService : "https://api.redlink.io/1.0-BETA/data/squebi/sparql/update",
                 queryParams : {
                     key : "E0TwfqjW3HfXdftAjmst0ElLa3fkY8TPa444e111"
-                },
-                onload : function(app) {
-
-                    /*var interval = setInterval(function(){
-                        console.log(app.getQuery());
-                    },1000);*/
-                    //console.log(SQUEBI.getApp());
                 }
             };
         </script>
@@ -43,6 +36,15 @@
                 text-decoration: none;
             }
         </style>
+
+        <script type="text/javascript">
+            /**
+             * Example for accessing current query data
+             */
+            function alertQuery() {
+                alert(SQUEBI.getApp().getQuery());
+            }
+        </script>
     </head>
     <body>
         <div id="appLoader" style="margin-top: 100px; text-align: center;">
@@ -136,6 +138,7 @@
             </div>
             <div class="footer">
                 <p>&copy; Salzburg Research 2014</p>
+                <!--<p><button onclick="alertQuery()">alertCurrentQuery</button></p>-->
             </div>
 
         </div>

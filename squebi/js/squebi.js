@@ -372,7 +372,11 @@ squebi.controller( 'QueryCtrl', [ 'SQUEBI', '$rootScope', '$sparql', '$http', '$
                     checkSuggestion(i);
                 }
             }
+        },
+        onLoad: function(editor) {
+            $rootScope.editor = editor;
         }
+
     };
 
     /**
@@ -626,7 +630,7 @@ squebi.run(['$rootScope','localStorageService', 'SQUEBI', '$location', function(
 
     var app = {
         getQuery : function() {
-            return "TODO";
+            return $rootScope.editor ? $rootScope.editor.getValue() : new Error("editor is not yet initialized");
         }
     }
 
