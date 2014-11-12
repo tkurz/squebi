@@ -102,7 +102,8 @@ require([
                 "500": "The query did not work. Maybe you little SPARQL mistake... :)"
             },
             "writers":["browse","xml","json","csv","piechart","rdfdot"],
-            "downloadEnabled":true
+            "downloadEnabled":true,
+            "outputQueryParam":"out"
         }
 
         jQuery.extend(defaultConfig, SQUEBI);

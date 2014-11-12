@@ -4,7 +4,7 @@
 squebi.run( ['$extension','SQUEBI',function($extension,SQUEBI){
 
     function buildLink(query) {
-        var query = SQUEBI.selectService + "?query=" + encodeURIComponent(query) + "&out=xml";
+        var query = SQUEBI.selectService + "?query=" + encodeURIComponent(query) + "&" + SQUEBI.outputQueryParam + "=xml";
         if(SQUEBI.queryParams) {
             for(var property in SQUEBI.queryParams) {
                 query += "&" + property + "=" + SQUEBI.queryParams[property];
