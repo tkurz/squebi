@@ -214,8 +214,7 @@ squebi.controller( 'QueryCtrl', [ 'SQUEBI', '$rootScope', '$sparql', '$http', '$
         if(match) {
 
             function replace(replacement,from,to) {
-
-                cm.setSelection(from, to);
+                cm.setSelection(from, cm.getCursor());
                 cm.replaceSelection(replacement);
                 c.ch = c.ch + replacement.length;
                 cm.setCursor(c);
