@@ -555,6 +555,22 @@ squebi.controller( 'ResultCtrl', [ 'SQUEBI', '$timeout', '$rootScope', '$scope',
 
 }]);
 
+squebi.controller('ModalInstanceCtrl', ['$scope' ,'$modalInstance', 'data', function ($scope, $modalInstance, data) {
+    $scope.data = data;
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss();
+    };
+
+    $scope.store = function () {
+        $modalInstance.close($scope.data);
+    };
+
+    $scope.reset = function() {
+        $modalInstance.close();
+    }
+}]);
+
 squebi.controller( 'ConfigurationCtrl', [ '$scope', '$modal', 'SQUEBI', 'localStorageService',  function ($scope, $modal, SQUEBI, localStorageService) {
 
     var queryParams = [];
@@ -569,28 +585,11 @@ squebi.controller( 'ConfigurationCtrl', [ '$scope', '$modal', 'SQUEBI', 'localSt
         queryParams : queryParams
     }
 
-    var ModalInstanceCtrl = function ($scope, $modalInstance, data) {
-
-        $scope.data = data;
-
-        $scope.cancel = function () {
-            $modalInstance.dismiss();
-        };
-
-        $scope.store = function () {
-            $modalInstance.close($scope.data);
-        };
-
-        $scope.reset = function() {
-            $modalInstance.close();
-        }
-    };
-
     $scope.open = function () {
 
         $modal.open({
             templateUrl: 'configuration.html',
-            controller: ModalInstanceCtrl,
+            controller: 'ModalInstanceCtrl',
             resolve: {
                 data: function () {
                     return $scope.data;
