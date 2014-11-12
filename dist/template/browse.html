@@ -1,0 +1,31 @@
+<div class="paging" ng-show="bindings.length">
+    <button class="btn btn-default btn-mini" ng-disabled="!showPrev" ng-click="prev()">&lt; pref</button>
+    <div>Rows {{firstItem}} to {{lastItem}} of overall {{resultSize}}</div>
+    <button class="btn btn-default btn-mini" ng-disabled="!showNext" ng-click="next()">next &gt;</button>
+</div>
+<table ng-show="bindings.length" class="table table-striped table-bordered table-browse">
+    <tr>
+        <th class="browser-header" ng-repeat="header in headers">{{header}}</th>
+    </tr>
+    <tr ng-repeat="binding in bindings">
+        <td ng-repeat="name in headers">
+            <div class="uri" ng-show="binding[name].type == 'uri'">
+                <span ng-click="selectURI(binding[name].value,name)">{{getDisplayName(binding[name].value)}}</span>
+                <a class="external-link" ng-href="{{binding[name].value}}" target="_blank"><i class="fa fa-external-link"></i></a>
+            </div>
+            <span class="literal" ng-show="binding[name].type == 'literal'">{{binding[name].value}}
+                <img ng-src="{{transparent}}" ng-show="binding[name]['xml:lang'] && showFlags" class="flag flag-{{binding[name]['xml:lang']}}">
+                <span class="lang" ng-show="binding[name]['xml:lang'] && !showFlags">@{{binding[name]['xml:lang']}}</span>
+                <span class="type" ng-show="binding[name]['datatype']">^^{{getDatatypeForBinding(binding[name])}}</span>
+            </span>
+            <span class="bnode" ng-show="binding[name].type == 'bnode'">_:{{binding[name].value}}</span>
+        </td>
+    </tr>
+</table>
+<div ng-show="!bindings.length">No results</div>
+<div class="paging" ng-show="bindings.length">
+    <button class="btn btn-default btn-mini" ng-disabled="!showPrev" ng-click="prev()">&lt; pref</button>
+    <div>Rows {{firstItem}} to {{lastItem}} of overall {{resultSize}}</div>
+    <button class="btn btn-default btn-mini" ng-disabled="!showNext" ng-click="next()">next &gt;</button>
+</div>
+

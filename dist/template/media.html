@@ -1,0 +1,19 @@
+<div class="video">
+    <div ng-show="data.length == 0">
+        No results.
+    </div>
+    <div class="video-item" ng-repeat="item in data" ng-show="data.length > 0">
+        <video preload="{{data.length < 2 ? 'auto' : 'none'}}" ng-click="selectVideo(item)" poster="squebi/img/poster.jpg" src="{{item.src}}" ng-show="item.type == 'video'"></video>
+        <div class="video-overlay">
+            <div ng-show="item.fragment.t">Start: {{item.fragment.t.start}}s End: {{item.fragment.t.end}}s</div>
+            <div ng-show="item.fragment.xywh">Region: {{item.fragment.xywh.x}}%, {{item.fragment.xywh.y}}%, {{item.fragment.xywh.w}}%, {{item.fragment.xywh.h}}%</div>
+        </div>
+    </div>
+    <div class="video-single-back" ng-show="singlevideo"></div>
+    <div class="video-closer">
+        <i ng-click="closeVideo()" class="fa fa-times" ng-show="singlevideo"></i>
+    </div>
+    <div style="{{singlevideo.fragment.xywh.style}}" ng-show="singlevideo &amp;&amp; singlevideo.fragment.xywh" class="region-overlay"></div>
+
+    <video preload="auto" poster="squebi/img/poster.jpg" class="video-single" ng-show="singlevideo" src="{{singlevideo.src}}" controls="" autoplay=""></video>
+</div>
