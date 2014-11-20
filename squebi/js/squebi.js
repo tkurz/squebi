@@ -213,11 +213,20 @@ squebi.controller( 'QueryCtrl', [ 'SQUEBI', '$rootScope', '$sparql', '$http', '$
         var match = suggestRegex.exec(line);
         if(match) {
 
-            function replace(replacement,from,to) {
+            function replace(replacement,from,to,uri,prefix) {
                 cm.setSelection(from, cm.getCursor());
                 cm.replaceSelection(replacement);
                 c.ch = c.ch + replacement.length;
                 cm.setCursor(c);
+
+                var regex = new RegExp("PREFIX\\s+" + prefix + ":\\s*<",'ig');
+
+                //if prefix is not yet defined
+                if(!cm.getValue().match(regex)) {
+                    c.line = c.line + 1;
+                    cm.setValue("PREFIX " + prefix + ": <" + uri+">\n" + cm.getValue());
+                    cm.setCursor(c);
+                }
             }
 
             function showHint(from, to, list) {
@@ -232,9 +241,22 @@ squebi.controller( 'QueryCtrl', [ 'SQUEBI', '$rootScope', '$sparql', '$http', '$
                 });
             }
 
-            var query = match[1]+":"+match[2];
+            //check if is in the local store
+            var result;
 
-            jQuery.ajax("http://lov.okfn.org/dataset/lov/api/v2/autocomplete/terms?q=" + query, {
+            //check if it is in static
+            for(var property in SQUEBI.namespaces) {
+                if(SQUEBI.namespaces[property] == match[1]) {
+                    result = property;
+                    break;
+                }
+            }
+
+            if(result == undefined) return;
+
+            var query = result+match[2];
+
+            jQuery.ajax("http://lov.okfn.org/dataset/lov/api/v2/autocomplete/terms?q=" + encodeURIComponent(query), {
                 async: false,
                 dataType: "json",
                 success: function(data) {
@@ -245,7 +267,7 @@ squebi.controller( 'QueryCtrl', [ 'SQUEBI', '$rootScope', '$sparql', '$http', '$
                     var to = {line: c.line, ch: c.ch};
 
                     for(var i = 0; i < data.results.length; i++) {
-                        var r = data.results[i].prefixedName;
+                        var r = match[1]+":"+data.results[i].localName;
 
                         if(query == r) {
                             list = [];
@@ -256,7 +278,7 @@ squebi.controller( 'QueryCtrl', [ 'SQUEBI', '$rootScope', '$sparql', '$http', '$
                             list.push({
                                 text: r,
                                 hint: function() {
-                                    replace(" "+r+" ",from, to);
+                                    replace(" "+r+" ",from, to, result,match[1]);
                                 }
                             });
                         }(r))
