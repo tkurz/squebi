@@ -20,6 +20,7 @@ requirejs.config({
         "squebiCsv" : "squebi/js/writer/squebi.csv",
         //"squebiPie": "squebi/js/writer/squebi.pie",
         "squebiRdfdot": "squebi/js/writer/squebi.rdfdot",
+        "squebiImage": "squebi/js/writer/squebi.image"
         //"squebiMedia" : "squebi/js/writer/squebi.media"
         //rdfstoreJs: "bower_components/rdfstore-js/dist/browser/rdf_store"
     },
@@ -38,7 +39,8 @@ requirejs.config({
         'squebiJson' : ['_squebi'],
         'squebiXml' : ['_squebi'],
         'squebiCsv' : ['_squebi'],
-        'squebiRdfdot' : ['_squebi']
+        'squebiRdfdot' : ['_squebi'],
+        'squebiImage' : ['_squebi']
         //'squebiPie' : ['_squebi'],
         //'squebiMedia' : ['_squebi']
     }
