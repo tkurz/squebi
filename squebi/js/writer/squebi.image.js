@@ -1,4 +1,4 @@
-squebi.run( function($extension,SQUEBI){
+squebi.run( ["$extension","SQUEBI", function($extension,SQUEBI){
 
     function buildLink(query) {
         var query = SQUEBI.selectService + "?query=" + encodeURIComponent(query) + "&out=json";
@@ -34,4 +34,4 @@ squebi.run( function($extension,SQUEBI){
 
     var writer = $extension.createResultWriter("image","Image", "json", "Displays SPARQL result as Image", onsuccess, onfailure);
     writer.position = 5;
-});
+}]);

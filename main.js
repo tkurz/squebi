@@ -51,7 +51,8 @@ require([
     "squebiJson",
     "squebiXml",
     "squebiCsv",
-    "squebiRdfdot"
+    "squebiRdfdot",
+    "squebiImage"
     //"squebiMedia"
     //'goog!visualization,1,packages:[corechart]',
     //"squebiPie"
@@ -103,7 +104,7 @@ require([
                 "404": "The service was not found or requires payment. Check your path and key in configuration.",
                 "500": "The query did not work. Maybe you little SPARQL mistake... :)"
             },
-            "writers":["browse","xml","json","csv","piechart","rdfdot"],
+            "writers":["browse","xml","json","csv","rdfdot","image"],
             "downloadEnabled":true,
             "outputQueryParam":"out"
         }
