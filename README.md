@@ -21,7 +21,7 @@ Installation
 ------------
 
 Squeby uses [bower](http://bower.io/) for dependency management. To get all dependencies, execute `bower install`.
-The current version is v0.0.9.
+The current version is v1.0.1.
 
 Configuration
 -------------
@@ -97,13 +97,13 @@ SQUEBI = {
 ```
 
 ## Use Squebi as Webjar
-You can use squebi in version 0.0.9 as webjar, too. The webjar is hosted on Maven Central. Put this dependencies to your pom
+You can use squebi in version 1.0.1 as webjar, too. The webjar is hosted on Maven Central. Put this dependencies to your pom
 
 ```xml
 <dependency>
     <groupId>com.github.tkurz.webjars</groupId>
     <artifactId>squebi</artifactId>
-    <version>0.0.9-SNAPSHOT</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
