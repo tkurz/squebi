@@ -40,7 +40,7 @@ squebi.service("$extension", ['$rootScope','SQUEBI', function ($rootScope, SQUEB
         var resultWriter = new ResultWriter(label,type,description,onsuccess,onfailure);
         extension.resultWriter.push(resultWriter);
         return resultWriter;
-    }
+    };
 
     this.listResultWriters = function() {
         //order
@@ -61,11 +61,11 @@ squebi.service("$extension", ['$rootScope','SQUEBI', function ($rootScope, SQUEB
             }
             return filtered;
         } else return extension.resultWriter;
-    }
+    };
 
     this.selectResultWriter = function(writer) {
         $rootScope.writer = writer;
-    }
+    };
 
     this.selectResultWriterById = function(id) {
         for(var i in extension.resultWriter) {
@@ -102,7 +102,7 @@ squebi.service("$sparql", [ '$http', 'SQUEBI', function ($http, SQUEBI) {
             error(function(data, status, headers, config) {
                 onfailure(data,status, headers, config);
             });
-    }
+    };
 
     this.update = function(query, options, onsuccess, onfailure) {
         $http({
@@ -164,7 +164,7 @@ squebi.controller( 'SampleCtrl', ['SQUEBI', '$rootScope', '$sparql', '$http', '$
         }
 
         $scope.showHint = true;
-    }
+    };
 
     $scope.samples = SQUEBI.samples;
 
@@ -188,7 +188,7 @@ squebi.controller( 'FormatCtrl', ['SQUEBI', '$extension', '$rootScope', '$sparql
 
     $scope.getClass = function(writer) {
         if(writer == $rootScope.writer) return 'active';
-    }
+    };
 
     $scope.selectWriter = function($event,writer) {
         $rootScope.$emit('setWriter',writer.id);
@@ -497,19 +497,19 @@ squebi.controller( 'QueryCtrl', [ 'SQUEBI', '$rootScope', '$sparql', '$http', '$
                 $rootScope.alerts.push({type: 'warning', msg: 'The type of query is not supported'});
                 $rootScope.loader = false;
         }
-    }
+    };
 
     // TODO workaround for codemirror bug
     var query = angular.copy($scope.query);
     $scope.$watch('query',function(a,b){
         if(a!="") query = a;
-    })
+    });
 
     $scope.triggerQuery = function() {
         if($location.search().query == query) {
             $scope.runQuery();
         } else $location.search("query",query);
-    }
+    };
 
     $scope.$on('$locationChangeSuccess', function () {
 
@@ -605,7 +605,7 @@ squebi.controller( 'ConfigurationCtrl', [ '$scope', '$modal', 'SQUEBI', 'localSt
         updateService: SQUEBI.updateService,
         selectService: SQUEBI.selectService,
         queryParams : queryParams
-    }
+    };
 
     $scope.open = function () {
 
