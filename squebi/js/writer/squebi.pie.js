@@ -16,7 +16,7 @@ squebi.directive('piechart', ['$location',function ($location) {
                 title: attrs.title ? attrs.title : undefined,
                 width: attrs.width ? attrs.width : 900,
                 height:attrs.height ? attrs.height : 500
-            }
+            };
 
             var chart = new google.visualization.PieChart(elem[0]);
 
@@ -99,11 +99,11 @@ squebi.run(['$extension','SQUEBI',function($extension,SQUEBI) {
             $rootScope.alerts.push({type:"danger",msg: e.message});
         }
 
-    }
+    };
 
     var onfailure = function($scope,data,$rootScope) {
         $scope.template = SQUEBI.home + '/template/basic.html';
-    }
+    };
 
     var writer = $extension.createResultWriter("piechart","Piechart", "json", "Displays SPARQL result as Pie Chart", onsuccess, onfailure);
     writer.position = 5;

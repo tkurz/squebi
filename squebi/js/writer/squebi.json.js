@@ -26,11 +26,11 @@ squebi.run(['$extension','SQUEBI', function($extension,SQUEBI){
             $scope.template = SQUEBI.home + '/template/data.html';
         }
 
-    }
+    };
 
     var onfailure = function($scope,data,$rootScope) {
         $scope.template = SQUEBI.home + '/template/basic.html';
-    }
+    };
 
     var writer = $extension.createResultWriter("json","JSON", "json", "Displays SPARQL result as JSON", onsuccess, onfailure);
     writer.position = 3;

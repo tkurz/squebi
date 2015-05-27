@@ -26,11 +26,11 @@ squebi.run( ['$extension','SQUEBI',function($extension,SQUEBI){
             $scope.template = SQUEBI.home + '/template/data.html';
         }
 
-    }
+    };
 
     var onfailure = function($scope,data,$rootScope) {
         $scope.template = SQUEBI.home + '/template/basic.html';
-    }
+    };
 
     var writer = $extension.createResultWriter("xml","XML", "xml", "Displays SPARQL result as XML", onsuccess, onfailure);
     writer.position = 2;

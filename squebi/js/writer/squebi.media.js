@@ -99,10 +99,10 @@ squebi.run(['$extension','SQUEBI','$timeout', function($extension,SQUEBI,$timeou
                 $scope.singlevideo = false;
                 $scope.selectVideo = function(video) {
                     $scope.singlevideo = video;
-                }
+                };
                 $scope.closeVideo = function() {
                     $scope.singlevideo = false;
-                }
+                };
                 $scope.template = SQUEBI.home + '/template/media.html';
             } catch(error) {
                 $rootScope.alerts.push({type:"danger",msg:error.message});
@@ -110,7 +110,7 @@ squebi.run(['$extension','SQUEBI','$timeout', function($extension,SQUEBI,$timeou
 
         }
 
-    }
+    };
 
     var writer = $extension.createResultWriter("media","Media", "json", "Displays result as Media Asset List", onsuccess);
     writer.position = 6;

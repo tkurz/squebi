@@ -26,11 +26,11 @@ squebi.run( ["$extension","SQUEBI", function($extension,SQUEBI){
             $scope.template = SQUEBI.home + '/template/image.html'
         }
 
-    }
+    };
 
     var onfailure = function($scope,data,$rootScope) {
         $scope.template = SQUEBI.home + '/template/basic.html';
-    }
+    };
 
     var writer = $extension.createResultWriter("image","Image", "json", "Displays SPARQL result as Image", onsuccess, onfailure);
     writer.position = 5;

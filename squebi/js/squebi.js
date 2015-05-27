@@ -652,11 +652,11 @@ squebi.run(['$rootScope','localStorageService', 'SQUEBI', '$location', function(
         getQuery : function() {
             return $rootScope.editor ? $rootScope.editor.getValue() : new Error("editor is not yet initialized");
         }
-    }
+    };
 
     window.SQUEBI.getApp = function() {
         return app;
-    }
+    };
 
     if(window.SQUEBI.onload && window.SQUEBI.onload instanceof Function) {
         window.SQUEBI.onload(app);

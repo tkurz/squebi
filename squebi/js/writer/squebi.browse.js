@@ -5,7 +5,7 @@ squebi.run(['$extension','SQUEBI','$anchorScroll', function($extension,SQUEBI,$a
 
     var config = {
         showFlags : false
-    }
+    };
 
     if(SQUEBI.browse) jQuery.extend(config, SQUEBI.browse);
 
@@ -49,17 +49,17 @@ squebi.run(['$extension','SQUEBI','$anchorScroll', function($extension,SQUEBI,$a
         } else {
             return uri;
         }
-    }
+    };
 
     var getDatatypeForBinding = function(binding) {
         if(binding && binding.datatype) {
             return getDisplayName(binding.datatype);
         }
-    }
+    };
 
     var getTitleForBinding = function(binding) {
         return binding.value + (binding['xml:lang'] ? '@'+binding['xml:lang'] : '') + (binding.datatype ? '^^'+binding.datatype : "");
-    }
+    };
 
     var bindings;
     var offset;
@@ -115,17 +115,17 @@ squebi.run(['$extension','SQUEBI','$anchorScroll', function($extension,SQUEBI,$a
             $scope.selectURI = function(uri,name) {
                 var query = getQuery(uri,name);
                 $rootScope.$emit('setQuery',query);
-            }
+            };
 
             $scope.prev = function() {
                 offset = Math.max(0, offset-SQUEBI.pageSize);
                 drawData($scope);
-            }
+            };
 
             $scope.next = function() {
                 offset = offset+SQUEBI.pageSize < $scope.resultSize ? offset+SQUEBI.pageSize : offset;
                 drawData($scope);
-            }
+            };
 
             $scope.getTitleForBinding = getTitleForBinding;
 
@@ -137,7 +137,7 @@ squebi.run(['$extension','SQUEBI','$anchorScroll', function($extension,SQUEBI,$a
 
             drawData($scope);
         }
-    }
+    };
 
     var writer = $extension.createResultWriter("browse","Browse", "json", "Displays browsable SPARQL result", onsuccess);
     writer.position = 1;

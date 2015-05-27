@@ -42,11 +42,11 @@ squebi.run( ['$extension','$http','SQUEBI','$log', function($extension,$http,SQU
             $rootScope.alerts.push({type:"warning",msg:"Only Construct and Describe queries allowed"});
         }
 
-    }
+    };
 
     var onfailure = function($scope,data,$rootScope) {
         $scope.template = SQUEBI.home + '/template/basic.html';
-    }
+    };
 
     var writer = $extension.createResultWriter("rdfdot","RDF.dot", "xml", "Displays SPARQL Construct query as graph image", onsuccess, onfailure);
     writer.position = 6;

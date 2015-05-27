@@ -107,7 +107,7 @@ require([
             "writers":["browse","xml","json","csv","rdfdot","image"],
             "downloadEnabled":true,
             "outputQueryParam":"out"
-        }
+        };
 
         jQuery.extend(defaultConfig, SQUEBI);
         jQuery(SQUEBI.appLoader).hide();
